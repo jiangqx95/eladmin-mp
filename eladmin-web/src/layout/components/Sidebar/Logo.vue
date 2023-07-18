@@ -67,9 +67,9 @@ export default {
       color: #fff;
       font-weight: 600;
       line-height: 50px;
-      font-size: 16px;
-      // font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
-      font-family: fangsong;
+      font-size: 18px;
+      font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+      // font-family: fangsong;
       vertical-align: middle;
     }
   }
