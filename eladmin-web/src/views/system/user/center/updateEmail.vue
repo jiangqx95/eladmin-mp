@@ -1,10 +1,20 @@
 <template>
   <div style="display: inline-block;">
-    <el-dialog :visible.sync="dialog" :close-on-click-modal="false" :before-close="cancel" :title="title" append-to-body width="475px" @close="cancel">
+    <el-dialog
+      :visible.sync="dialog"
+      :close-on-click-modal="false"
+      :before-close="cancel"
+      :title="title"
+      append-to-body
+      width="475px"
+      @close="cancel"
+    >
       <el-form ref="form" :model="form" :rules="rules" size="small" label-width="88px">
         <el-form-item label="新邮箱" prop="email">
-          <el-input v-model="form.email" auto-complete="on" style="width: 200px;" />
-          <el-button :loading="codeLoading" :disabled="isDisabled" size="small" @click="sendCode">{{ buttonName }}</el-button>
+          <el-input v-model="form.email" auto-complete="on" style="width: 60%" />
+          <el-button style="width: 31%" :loading="codeLoading" :disabled="isDisabled" size="small" @click="sendCode">
+            {{ buttonName }}
+          </el-button>
         </el-form-item>
         <el-form-item label="验证码" prop="code">
           <el-input v-model="form.code" style="width: 320px;" />
@@ -13,9 +23,9 @@
           <el-input v-model="form.pass" type="password" style="width: 320px;" />
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="text" @click="cancel">取消</el-button>
-        <el-button :loading="loading" type="primary" @click="doSubmit">确认</el-button>
+      <div slot="footer" class="dialog-footer" style="text-align: center">
+        <el-button size="mini" icon="el-icon-close" @click="cancel">取消</el-button>
+        <el-button size="mini" icon="el-icon-check" :loading="loading" type="primary" @click="doSubmit">确认</el-button>
       </div>
     </el-dialog>
   </div>
@@ -26,6 +36,7 @@ import store from '@/store'
 import { validEmail } from '@/utils/validate'
 import { updateEmail } from '@/api/system/user'
 import { resetEmail } from '@/api/system/code'
+
 export default {
   props: {
     email: {
@@ -67,35 +78,41 @@ export default {
       this.resetForm()
     },
     sendCode() {
-      if (this.form.email && this.form.email !== this.email) {
-        this.codeLoading = true
-        this.buttonName = '验证码发送中'
-        const _this = this
-        resetEmail(this.form.email).then(res => {
-          this.$message({
-            showClose: true,
-            message: '发送成功，验证码有效期5分钟',
-            type: 'success'
-          })
-          this.codeLoading = false
-          this.isDisabled = true
-          this.buttonName = this.time-- + '秒后重新发送'
-          this.timer = window.setInterval(function() {
-            _this.buttonName = _this.time + '秒后重新发送'
-            --_this.time
-            if (_this.time < 0) {
-              _this.buttonName = '重新发送'
-              _this.time = 60
-              _this.isDisabled = false
-              window.clearInterval(_this.timer)
-            }
-          }, 1000)
-        }).catch(err => {
-          this.resetForm()
-          this.codeLoading = false
-          console.log(err.response.data.message)
-        })
+      if (!this.form.email) {
+        this.$message.warning('请填写邮箱!')
+        return
       }
+      if (this.form.email === this.email) {
+        this.$message.error('不能与旧邮箱相同!')
+        return
+      }
+      this.codeLoading = true
+      this.buttonName = '验证码发送中'
+      const _this = this
+      resetEmail(this.form.email).then(res => {
+        this.$message({
+          showClose: true,
+          message: '发送成功，验证码有效期5分钟',
+          type: 'success'
+        })
+        this.codeLoading = false
+        this.isDisabled = true
+        this.buttonName = this.time-- + '秒后重新发送'
+        this.timer = window.setInterval(function() {
+          _this.buttonName = _this.time + '秒后重新发送'
+          --_this.time
+          if (_this.time < 0) {
+            _this.buttonName = '重新发送'
+            _this.time = 60
+            _this.isDisabled = false
+            window.clearInterval(_this.timer)
+          }
+        }, 1000)
+      }).catch(err => {
+        this.resetForm()
+        this.codeLoading = false
+        console.log(err.response.data.message)
+      })
     },
     doSubmit() {
       this.$refs['form'].validate((valid) => {
@@ -109,7 +126,8 @@ export default {
               type: 'success',
               duration: 1500
             })
-            store.dispatch('GetInfo').then(() => {})
+            store.dispatch('GetInfo').then(() => {
+            })
           }).catch(err => {
             this.loading = false
             console.log(err.response.data.message)

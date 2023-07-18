@@ -1,6 +1,11 @@
 <template>
   <div class="navbar">
-    <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <hamburger
+      id="hamburger-container"
+      :is-active="sidebar.opened"
+      class="hamburger-container"
+      @toggleClick="toggleSideBar"
+    />
 
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
 
@@ -8,15 +13,11 @@
       <template v-if="device!=='mobile'">
         <search id="header-search" class="right-menu-item" />
 
-        <el-tooltip content="项目文档" effect="dark" placement="bottom">
-          <Doc class="right-menu-item hover-effect" />
-        </el-tooltip>
-
         <el-tooltip content="全屏缩放" effect="dark" placement="bottom">
           <screenfull id="screenfull" class="right-menu-item hover-effect" />
         </el-tooltip>
 
-        <el-tooltip content="布局设置" effect="dark" placement="bottom">
+        <el-tooltip content="组件大小" effect="dark" placement="bottom">
           <size-select id="size-select" class="right-menu-item hover-effect" />
         </el-tooltip>
 
@@ -25,22 +26,22 @@
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
           <img :src="user.avatarName ? baseApi + '/avatar/' + user.avatarName : Avatar" class="user-avatar">
-          <i class="el-icon-caret-bottom" />
+          <span style="font-size: 14px">{{ user.nickName }}</span>
         </div>
         <el-dropdown-menu slot="dropdown">
           <span style="display:block;" @click="show = true">
             <el-dropdown-item>
-              布局设置
+              <i class="el-icon-monitor" />主题设置
             </el-dropdown-item>
           </span>
           <router-link to="/user/center">
             <el-dropdown-item>
-              个人中心
+              <i class="el-icon-user" />个人中心
             </el-dropdown-item>
           </router-link>
           <span style="display:block;" @click="open">
             <el-dropdown-item divided>
-              退出登录
+              <i class="el-icon-switch-button" />退出登录
             </el-dropdown-item>
           </span>
         </el-dropdown-menu>
@@ -53,11 +54,10 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-import Doc from '@/components/Doc'
 import Screenfull from '@/components/Screenfull'
 import SizeSelect from '@/components/SizeSelect'
 import Search from '@/components/HeaderSearch'
-import Avatar from '@/assets/images/avatar.png'
+import Avatar from '@/assets/images/avatar.svg'
 
 export default {
   components: {
@@ -65,8 +65,7 @@ export default {
     Hamburger,
     Screenfull,
     SizeSelect,
-    Search,
-    Doc
+    Search
   },
   data() {
     return {
@@ -121,7 +120,7 @@ export default {
   overflow: hidden;
   position: relative;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
 
   .hamburger-container {
     line-height: 46px;
@@ -129,7 +128,7 @@ export default {
     float: left;
     cursor: pointer;
     transition: background .3s;
-    -webkit-tap-highlight-color:transparent;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
       background: rgba(0, 0, 0, .025)
@@ -173,17 +172,19 @@ export default {
     }
 
     .avatar-container {
-      margin-right: 30px;
+      margin-right: 10px;
 
       .avatar-wrapper {
-        margin-top: 5px;
+        height: 100%;
         position: relative;
 
         .user-avatar {
           cursor: pointer;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          vertical-align: middle;
+          margin-right: 8px;
         }
 
         .el-icon-caret-bottom {

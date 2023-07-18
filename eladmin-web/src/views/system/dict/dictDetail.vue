@@ -31,7 +31,7 @@
         </div>
       </el-dialog>
       <!--表格渲染-->
-      <el-table ref="table" v-loading="crud.loading" :data="crud.data" highlight-current-row style="width: 100%;" @selection-change="crud.selectionChangeHandler">
+      <el-table ref="table" v-loading="crud.loading" :border="true" :data="crud.data" highlight-current-row style="width: 100%;" @selection-change="crud.selectionChangeHandler">
         <el-table-column label="所属字典">
           {{ query.dictName }}
         </el-table-column>

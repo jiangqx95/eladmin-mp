@@ -52,8 +52,8 @@
       </div>
     </el-dialog>
     <!--表格渲染-->
-    <el-table ref="table" v-loading="crud.loading" :data="crud.data" highlight-current-row style="width: 100%" @selection-change="crud.selectionChangeHandler" @current-change="handleCurrentChange">
-      <el-table-column type="selection" width="55" />
+    <el-table ref="table" v-loading="crud.loading" :border="true" :data="crud.data" highlight-current-row style="width: 100%" @selection-change="crud.selectionChangeHandler" @current-change="handleCurrentChange">
+      <el-table-column type="selection" width="40" />
       <el-table-column prop="name" label="应用名称" />
       <el-table-column prop="port" label="端口号" />
       <el-table-column prop="uploadPath" label="上传目录" />

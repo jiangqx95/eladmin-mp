@@ -17,7 +17,14 @@
       </crudOperation>
     </div>
     <!--表格渲染-->
-    <el-table ref="table" v-loading="crud.loading" :data="crud.data" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
+    <el-table
+      ref="table"
+      v-loading="crud.loading"
+      :border="true"
+      :data="crud.data"
+      style="width: 100%;"
+      @selection-change="crud.selectionChangeHandler"
+    >
       <el-table-column type="expand">
         <template slot-scope="props">
           <el-form label-position="left" inline class="demo-table-expand">
@@ -42,8 +49,10 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog :visible.sync="dialog" title="异常详情" append-to-body top="30px" width="85%">
-      <pre>{{ errorInfo }}</pre>
+    <el-dialog :visible.sync="dialog" title="异常详情" width="85%">
+      <div style="height: 500px;overflow-y:scroll">
+        <pre>{{ errorInfo }}</pre>
+      </div>
     </el-dialog>
     <!--分页组件-->
     <pagination />
@@ -51,7 +60,7 @@
 </template>
 
 <script>
-import { getErrDetail, delAllError } from '@/api/monitor/log'
+import { delAllError, getErrDetail } from '@/api/monitor/log'
 import Search from './search'
 import CRUD, { presenter } from '@crud/crud'
 import crudOperation from '@crud/CRUD.operation'
@@ -66,7 +75,8 @@ export default {
   mixins: [presenter()],
   data() {
     return {
-      errorInfo: '', dialog: false
+      errorInfo: '',
+      dialog: false
     }
   },
   created() {
@@ -112,21 +122,26 @@ export default {
 .demo-table-expand {
   font-size: 0;
 }
+
 .demo-table-expand label {
   width: 70px;
   color: #99a9bf;
 }
+
 .demo-table-expand .el-form-item {
   margin-right: 0;
   margin-bottom: 0;
   width: 100%;
 }
+
 .demo-table-expand .el-form-item__content {
   font-size: 12px;
 }
+
 /deep/ .el-dialog__body {
   padding: 0 20px 10px 20px !important;
 }
+
 .java.hljs {
   color: #444;
   background: #ffffff !important;

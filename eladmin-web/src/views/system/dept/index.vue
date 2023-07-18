@@ -4,9 +4,25 @@
     <div class="head-container">
       <div v-if="crud.props.searchToggle">
         <!-- 搜索 -->
-        <el-input v-model="query.name" clearable size="small" placeholder="输入部门名称搜索" style="width: 200px;" class="filter-item" @keyup.enter.native="crud.toQuery" />
+        <el-input
+          v-model="query.name"
+          clearable
+          size="small"
+          placeholder="输入部门名称搜索"
+          style="width: 200px;"
+          class="filter-item"
+          @keyup.enter.native="crud.toQuery"
+        />
         <date-range-picker v-model="query.createTime" class="date-item" />
-        <el-select v-model="query.enabled" clearable size="small" placeholder="状态" class="filter-item" style="width: 90px" @change="crud.toQuery">
+        <el-select
+          v-model="query.enabled"
+          clearable
+          size="small"
+          placeholder="状态"
+          class="filter-item"
+          style="width: 90px"
+          @change="crud.toQuery"
+        >
           <el-option v-for="item in enabledTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
         </el-select>
         <rrOperation />
@@ -14,7 +30,14 @@
       <crudOperation :permission="permission" />
     </div>
     <!--表单组件-->
-    <el-dialog append-to-body :close-on-click-modal="false" :before-close="crud.cancelCU" :visible.sync="crud.status.cu > 0" :title="crud.status.title" width="500px">
+    <el-dialog
+      append-to-body
+      :close-on-click-modal="false"
+      :before-close="crud.cancelCU"
+      :visible.sync="crud.status.cu > 0"
+      :title="crud.status.title"
+      width="500px"
+    >
       <el-form ref="form" inline :model="form" :rules="rules" size="small" label-width="80px">
         <el-form-item label="部门名称" prop="name">
           <el-input v-model="form.name" style="width: 370px;" />
@@ -35,7 +58,9 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="状态" prop="enabled">
-          <el-radio v-for="item in dict.dept_status" :key="item.id" v-model="form.enabled" :label="item.value">{{ item.label }}</el-radio>
+          <el-radio v-for="item in dict.dept_status" :key="item.id" v-model="form.enabled" :label="item.value">
+            {{ item.label }}
+          </el-radio>
         </el-form-item>
         <el-form-item v-if="form.isTop === '0'" style="margin-bottom: 0;" label="上级部门" prop="pid">
           <treeselect
@@ -56,6 +81,7 @@
     <el-table
       ref="table"
       v-loading="crud.loading"
+      :border="true"
       lazy
       :load="getDeptDatas"
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
@@ -65,7 +91,7 @@
       @select-all="crud.selectAllChange"
       @selection-change="crud.selectionChangeHandler"
     >
-      <el-table-column :selectable="checkboxT" type="selection" width="55" />
+      <el-table-column :selectable="checkboxT" type="selection" width="40" />
       <el-table-column label="名称" prop="name" />
       <el-table-column label="排序" prop="deptSort" />
       <el-table-column label="状态" align="center" prop="enabled">
@@ -80,7 +106,13 @@
         </template>
       </el-table-column>
       <el-table-column prop="createTime" label="创建日期" />
-      <el-table-column v-if="checkPer(['admin','dept:edit','dept:del'])" label="操作" width="130px" align="center" fixed="right">
+      <el-table-column
+        v-if="checkPer(['admin','dept:edit','dept:del'])"
+        label="操作"
+        width="130px"
+        align="center"
+        fixed="right"
+      >
         <template slot-scope="scope">
           <udOperation
             :data="scope.row"
@@ -96,10 +128,9 @@
 
 <script>
 import crudDept from '@/api/system/dept'
-import Treeselect from '@riophae/vue-treeselect'
+import Treeselect, { LOAD_CHILDREN_OPTIONS } from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
-import { LOAD_CHILDREN_OPTIONS } from '@riophae/vue-treeselect'
-import CRUD, { presenter, header, form, crud } from '@crud/crud'
+import CRUD, { crud, form, header, presenter } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
 import udOperation from '@crud/UD.operation'
@@ -242,13 +273,13 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
- ::v-deep .vue-treeselect__control,::v-deep .vue-treeselect__placeholder,::v-deep .vue-treeselect__single-value {
-    height: 30px;
-    line-height: 30px;
-  }
+::v-deep .vue-treeselect__control, ::v-deep .vue-treeselect__placeholder, ::v-deep .vue-treeselect__single-value {
+  height: 30px;
+  line-height: 30px;
+}
 </style>
 <style rel="stylesheet/scss" lang="scss" scoped>
- ::v-deep .el-input-number .el-input__inner {
-    text-align: left;
-  }
+::v-deep .el-input-number .el-input__inner {
+  text-align: left;
+}
 </style>

@@ -46,8 +46,8 @@
       </div>
     </el-dialog>
     <!--表格渲染-->
-    <el-table ref="table" v-loading="crud.loading" :data="crud.data" highlight-current-row stripe style="width: 100%" @selection-change="handleCurrentChange">
-      <el-table-column type="selection" width="55" />
+    <el-table ref="table" v-loading="crud.loading" :border="true" :data="crud.data" highlight-current-row stripe style="width: 100%" @selection-change="handleCurrentChange">
+      <el-table-column type="selection" width="40" />
       <el-table-column prop="name" width="130px" label="数据库名称" />
       <el-table-column prop="jdbcUrl" label="连接地址" />
       <el-table-column prop="userName" width="200px" label="用户名" />

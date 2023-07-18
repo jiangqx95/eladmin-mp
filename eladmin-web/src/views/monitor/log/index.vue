@@ -17,7 +17,7 @@
       </crudOperation>
     </div>
     <!--表格渲染-->
-    <el-table ref="table" v-loading="crud.loading" :data="crud.data" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
+    <el-table ref="table" v-loading="crud.loading" :border="true" :data="crud.data" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
       <el-table-column type="expand">
         <template slot-scope="props">
           <el-form label-position="left" inline class="demo-table-expand">
@@ -98,6 +98,7 @@ export default {
 <style>
 .demo-table-expand {
   font-size: 0;
+  margin-left: 5px;
 }
 .demo-table-expand label {
   width: 70px;

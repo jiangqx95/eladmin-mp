@@ -45,7 +45,7 @@
               size="small"
               placeholder="状态"
               class="filter-item"
-              style="width: 90px"
+              style="width: 120px"
               @change="crud.toQuery"
             >
               <el-option
@@ -152,8 +152,8 @@
           </div>
         </el-dialog>
         <!--表格渲染-->
-        <el-table ref="table" v-loading="crud.loading" :data="crud.data" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
-          <el-table-column :selectable="checkboxT" type="selection" width="55" />
+        <el-table ref="table" v-loading="crud.loading" :border="true" :data="crud.data" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
+          <el-table-column :selectable="checkboxT" type="selection" width="40" />
           <el-table-column :show-overflow-tooltip="true" prop="username" label="用户名" />
           <el-table-column :show-overflow-tooltip="true" prop="nickName" label="昵称" />
           <el-table-column prop="gender" label="性别" />

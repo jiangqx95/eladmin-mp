@@ -52,8 +52,8 @@
       </div>
     </el-dialog>
     <!--表格渲染-->
-    <el-table ref="table" v-loading="crud.loading" :data="crud.data" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
-      <el-table-column type="selection" width="55" />
+    <el-table ref="table" v-loading="crud.loading" :border="true" :data="crud.data" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
+      <el-table-column type="selection" width="40" />
       <el-table-column prop="name" label="文件名">
         <template slot-scope="scope">
           <el-popover

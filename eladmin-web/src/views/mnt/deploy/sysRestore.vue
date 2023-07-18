@@ -7,7 +7,7 @@
     </div>
     <el-form size="small" label-width="80px">
       <!--表格渲染-->
-      <el-table v-loading="loading" :data="data" style="width: 100%" @row-click="showRow">
+      <el-table v-loading="loading" :border="true" :data="data" style="width: 100%" @row-click="showRow">
         <el-table-column width="30px">
           <template slot-scope="scope">
             <el-radio v-model="radio" :label="scope.$index" />

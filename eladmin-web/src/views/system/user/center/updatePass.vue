@@ -12,9 +12,9 @@
           <el-input v-model="form.confirmPass" type="password" auto-complete="on" style="width: 370px;" />
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="text" @click="cancel">取消</el-button>
-        <el-button :loading="loading" type="primary" @click="doSubmit">确认</el-button>
+      <div slot="footer" class="dialog-footer" style="text-align: center">
+        <el-button size="mini" icon="el-icon-close" @click="cancel">取消</el-button>
+        <el-button size="mini" icon="el-icon-check" :loading="loading" type="primary" @click="doSubmit">确认</el-button>
       </div>
     </el-dialog>
   </div>

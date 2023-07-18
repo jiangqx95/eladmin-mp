@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      title: 'ELADMIN-后台管理',
+      title: '监狱管理系统',
       logo: Logo
     }
   }
@@ -67,8 +67,9 @@ export default {
       color: #fff;
       font-weight: 600;
       line-height: 50px;
-      font-size: 14px;
-      font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      // font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+      font-family: fangsong;
       vertical-align: middle;
     }
   }

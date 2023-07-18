@@ -29,8 +29,8 @@
             <crudOperation :permission="permission" />
           </div>
           <!--表格渲染-->
-          <el-table ref="table" v-loading="crud.loading" :data="crud.data" highlight-current-row style="width: 100%;" @selection-change="crud.selectionChangeHandler" @current-change="handleCurrentChange">
-            <el-table-column type="selection" width="55" />
+          <el-table ref="table" v-loading="crud.loading" :border="true" :data="crud.data" highlight-current-row style="width: 100%;" @selection-change="crud.selectionChangeHandler" @current-change="handleCurrentChange">
+            <el-table-column type="selection" width="40" />
             <el-table-column :show-overflow-tooltip="true" prop="name" label="名称" />
             <el-table-column :show-overflow-tooltip="true" prop="description" label="描述" />
             <el-table-column v-if="checkPer(['admin','dict:edit','dict:del'])" label="操作" width="130px" align="center" fixed="right">
@@ -132,4 +132,7 @@ export default {
 </script>
 
 <style scoped>
+::v-deep .el-table__row {
+  cursor: pointer;
+}
 </style>

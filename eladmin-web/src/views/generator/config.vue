@@ -33,7 +33,7 @@
             </el-tooltip>
           </div>
           <el-form size="small" label-width="90px">
-            <el-table v-loading="loading" :data="data" :max-height="tableHeight" size="small" style="width: 100%;margin-bottom: 15px">
+            <el-table v-loading="loading" :border="true" :data="data" :max-height="tableHeight" size="small" style="width: 100%;margin-bottom: 15px">
               <el-table-column prop="columnName" width="110px" label="字段名称" />
               <el-table-column prop="columnType" width="110px" label="字段类型" />
               <el-table-column prop="remark" label="字段描述">
