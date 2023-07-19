@@ -2,7 +2,7 @@ module.exports = {
   /**
    * @description 网站标题
    */
-  title: 'ELADMIN',
+  title: '监狱管理系统',
   /**
    * @description 是否显示 tagsView
    */

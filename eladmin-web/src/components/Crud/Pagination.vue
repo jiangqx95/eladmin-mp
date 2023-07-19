@@ -1,6 +1,7 @@
 <!--分页-->
 <template>
   <el-pagination
+    background
     :page-size.sync="page.size"
     :total="page.total"
     :current-page.sync="page.page"
