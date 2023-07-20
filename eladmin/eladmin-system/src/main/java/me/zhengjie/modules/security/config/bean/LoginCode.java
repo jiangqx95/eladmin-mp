@@ -25,13 +25,16 @@ import lombok.Data;
  */
 @Data
 public class LoginCode {
-
+    /**
+     * 是否启用登录验证码
+     */
+    private boolean enable;
     /**
      * 验证码配置
      */
     private LoginCodeEnum codeType;
     /**
-     * 验证码有效期 分钟
+     * 验证码有效期(分钟)
      */
     private Long expiration = 2L;
     /**

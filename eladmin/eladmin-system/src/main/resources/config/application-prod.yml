@@ -53,21 +53,23 @@ spring:
 
 # 登录相关配置
 login:
-  #  是否限制单用户登录
+  # 是否限制单用户登录
   single-login: false
   # Redis用户登录缓存配置
   user-cache:
     # 存活时间/秒
     idle-time: 21600
-  #  验证码
+  # 验证码
   login-code:
-    #  验证码类型配置 查看 LoginProperties 类
+    # 是否启用登录验证码
+    enable: true
+    # 验证码类型配置 查看 LoginProperties 类
     code-type: arithmetic
-    #  登录图形验证码有效时间/分钟
+    # 登录图形验证码有效时间/分钟
     expiration: 2
-    #  验证码高度
+    # 验证码高度
     width: 111
-    #  验证码宽度
+    # 验证码宽度
     height: 36
     # 内容长度
     length: 2
@@ -100,10 +102,10 @@ generator:
 
 #如果生产环境要开启swagger，需要配置请求地址
 #springfox:
-#  documentation:
-#    swagger:
-#      v2:
-#        host: # 接口域名或外网ip
+# documentation:
+#   swagger:
+#     v2:
+#       host: # 接口域名或外网ip
 
 #是否开启 swagger-ui
 swagger:

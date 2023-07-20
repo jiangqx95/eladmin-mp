@@ -30,11 +30,11 @@ import me.zhengjie.modules.security.config.bean.LoginCodeEnum;
 import me.zhengjie.modules.security.config.bean.LoginProperties;
 import me.zhengjie.modules.security.config.bean.SecurityProperties;
 import me.zhengjie.modules.security.security.TokenProvider;
+import me.zhengjie.modules.security.service.OnlineUserService;
 import me.zhengjie.modules.security.service.dto.AuthUserDto;
 import me.zhengjie.modules.security.service.dto.JwtUserDto;
-import me.zhengjie.modules.security.service.OnlineUserService;
-import me.zhengjie.utils.RsaUtils;
 import me.zhengjie.utils.RedisUtils;
+import me.zhengjie.utils.RsaUtils;
 import me.zhengjie.utils.SecurityUtils;
 import me.zhengjie.utils.StringUtils;
 import org.springframework.http.HttpStatus;
@@ -46,6 +46,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -75,18 +76,23 @@ public class AuthorizationController {
     @ApiOperation("登录授权")
     @AnonymousPostMapping(value = "/login")
     public ResponseEntity<Object> login(@Validated @RequestBody AuthUserDto authUser, HttpServletRequest request) throws Exception {
+        // 校验验证码
+        if (loginProperties.getLoginCode().isEnable()) {
+            // 查询验证码
+            String code = (String) redisUtils.get(authUser.getUuid());
+            if (StringUtils.isBlank(code)) {
+                throw new BadRequestException("验证码不存在或已过期");
+            }
+            // 清除验证码
+            redisUtils.del(authUser.getUuid());
+            if (StringUtils.isBlank(authUser.getCode()) || !authUser.getCode().equalsIgnoreCase(code)) {
+                throw new BadRequestException("验证码错误");
+            }
+        }
+
         // 密码解密
         String password = RsaUtils.decryptByPrivateKey(RsaProperties.privateKey, authUser.getPassword());
-        // 查询验证码
-        String code = (String) redisUtils.get(authUser.getUuid());
-        // 清除验证码
-        redisUtils.del(authUser.getUuid());
-        if (StringUtils.isBlank(code)) {
-            throw new BadRequestException("验证码不存在或已过期");
-        }
-        if (StringUtils.isBlank(authUser.getCode()) || !authUser.getCode().equalsIgnoreCase(code)) {
-            throw new BadRequestException("验证码错误");
-        }
+
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(authUser.getUsername(), password);
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
@@ -121,21 +127,27 @@ public class AuthorizationController {
     @ApiOperation("获取验证码")
     @AnonymousGetMapping(value = "/code")
     public ResponseEntity<Object> getCode() {
-        // 获取运算的结果
-        Captcha captcha = loginProperties.getCaptcha();
-        String uuid = properties.getCodeKey() + IdUtil.simpleUUID();
-        //当验证码类型为 arithmetic时且长度 >= 2 时，captcha.text()的结果有几率为浮点型
-        String captchaValue = captcha.text();
-        if (captcha.getCharType() - 1 == LoginCodeEnum.ARITHMETIC.ordinal() && captchaValue.contains(".")) {
-            captchaValue = captchaValue.split("\\.")[0];
+        // 是否开启验证密码
+        boolean enable = loginProperties.getLoginCode().isEnable();
+        Captcha captcha = null;
+        String uuid = null;
+        if (enable) {
+            // 获取运算的结果
+            captcha = loginProperties.getCaptcha();
+            uuid = properties.getCodeKey() + IdUtil.simpleUUID();
+            //当验证码类型为 arithmetic时且长度 >= 2 时，captcha.text()的结果有几率为浮点型
+            String captchaValue = captcha.text();
+            if (captcha.getCharType() - 1 == LoginCodeEnum.ARITHMETIC.ordinal() && captchaValue.contains(".")) {
+                captchaValue = captchaValue.split("\\.")[0];
+            }
+            // 保存
+            redisUtils.set(uuid, captchaValue, loginProperties.getLoginCode().getExpiration(), TimeUnit.MINUTES);
         }
-        // 保存
-        redisUtils.set(uuid, captchaValue, loginProperties.getLoginCode().getExpiration(), TimeUnit.MINUTES);
         // 验证码信息
-        Map<String, Object> imgResult = new HashMap<String, Object>(2) {{
-            put("img", captcha.toBase64());
-            put("uuid", uuid);
-        }};
+        Map<String, Object> imgResult = new HashMap<>(3);
+        imgResult.put("img", enable ? captcha.toBase64() : null);
+        imgResult.put("uuid", uuid);
+        imgResult.put("enable", enable);
         return ResponseEntity.ok(imgResult);
     }
 

@@ -56,7 +56,6 @@ service.interceptors.response.use(
           return Promise.reject(error)
         }
       }
-      console.log(code)
       if (code) {
         if (code === 401) {
           store.dispatch('LogOut').then(() => {

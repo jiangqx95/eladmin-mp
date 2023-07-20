@@ -10,7 +10,7 @@
         size="mini"
         type="primary"
         icon="el-icon-plus"
-        @click="crud.toAdd"
+        @click.stop="crud.toAdd"
       >
         新增
       </el-button>
@@ -22,7 +22,7 @@
         type="success"
         icon="el-icon-edit"
         :disabled="crud.selections.length !== 1"
-        @click="crud.toEdit(crud.selections[0])"
+        @click.stop="crud.toEdit(crud.selections[0])"
       >
         修改
       </el-button>
@@ -36,7 +36,7 @@
         size="mini"
         :loading="crud.delAllLoading"
         :disabled="crud.selections.length === 0"
-        @click="toDelete(crud.selections)"
+        @click.stop="toDelete(crud.selections)"
       >
         删除
       </el-button>
@@ -48,7 +48,7 @@
         size="mini"
         type="warning"
         icon="el-icon-download"
-        @click="crud.doExport"
+        @click.stop="crud.doExport"
       >导出</el-button>
       <!--右侧-->
       <slot name="right" />
@@ -59,11 +59,11 @@
         plain
         type="info"
         icon="el-icon-search"
-        @click="toggleSearch()"
+        @click.stop="toggleSearch()"
       />
       <el-button
         size="mini"
-        icon="el-icon-refresh"
+        icon.stop="el-icon-refresh"
         @click="crud.refresh()"
       />
       <el-popover

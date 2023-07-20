@@ -11,8 +11,8 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="text" @click="crud.cancelCU">取消</el-button>
-        <el-button :loading="crud.status.cu === 2" type="primary" @click="crud.submitCU">确认</el-button>
+        <el-button size="small" icon="el-icon-close" @click="crud.cancelCU">取消</el-button>
+        <el-button size="small" icon="el-icon-check" :loading="crud.status.cu === 2" type="primary" @click="crud.submitCU">确认</el-button>
       </div>
     </el-dialog>
     <!-- 字典列表 -->
@@ -35,10 +35,7 @@
             <el-table-column :show-overflow-tooltip="true" prop="description" label="描述" />
             <el-table-column v-if="checkPer(['admin','dict:edit','dict:del'])" label="操作" width="130px" align="center" fixed="right">
               <template slot-scope="scope">
-                <udOperation
-                  :data="scope.row"
-                  :permission="permission"
-                />
+                <udOperation :data="scope.row" :permission="permission" />
               </template>
             </el-table-column>
           </el-table>
@@ -54,8 +51,8 @@
             <el-button
               v-if="checkPer(['admin','dict:add']) && this.$refs.dictDetail && this.$refs.dictDetail.query.dictName"
               class="filter-item"
+              style="float: right;"
               size="mini"
-              style="float: right;padding: 4px 10px"
               type="primary"
               icon="el-icon-plus"
               @click="$refs.dictDetail && $refs.dictDetail.crud.toAdd()"

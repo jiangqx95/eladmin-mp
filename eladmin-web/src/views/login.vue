@@ -27,7 +27,7 @@
           <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>
-      <el-form-item prop="code">
+      <el-form-item v-if="enableCode" prop="code">
         <el-input
           v-model="loginForm.code"
           auto-complete="off"
@@ -41,9 +41,7 @@
           <img :src="codeUrl" @click="getCode">
         </div>
       </el-form-item>
-      <el-checkbox v-model="loginForm.rememberMe" style="margin:0 0 25px 0;">
-        记住我
-      </el-checkbox>
+      <el-checkbox v-model="loginForm.rememberMe" style="margin:0 0 25px 0;">记住我</el-checkbox>
       <el-form-item style="width:100%;">
         <el-button
           :loading="loading"
@@ -82,6 +80,7 @@ export default {
       logo: Logo,
       Background: Background,
       codeUrl: '',
+      enableCode: false,
       cookiePass: '',
       loginForm: {
         username: 'admin',
@@ -125,8 +124,9 @@ export default {
   methods: {
     getCode() {
       getCodeImg().then(res => {
-        this.codeUrl = res.img
-        this.loginForm.uuid = res.uuid
+        this.codeUrl = res['img']
+        this.loginForm.uuid = res['uuid']
+        this.enableCode = res['enable']
       })
     },
     getCookie() {
