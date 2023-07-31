@@ -105,10 +105,11 @@
             <version>3.0.3</version>
         </dependency>
 
+        <!--Mysql依赖包-->
         <dependency>
-            <groupId>com.dameng</groupId>
-            <artifactId>Dm8JdbcDriver18</artifactId>
-            <version>8.1.2.82</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- druid数据源驱动 -->
