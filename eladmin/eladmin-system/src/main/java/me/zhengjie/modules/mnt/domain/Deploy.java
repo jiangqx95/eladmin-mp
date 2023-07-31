@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 @TableName("mnt_deploy")
 public class Deploy extends BaseEntity implements Serializable {
 
-	@TableId(value = "deploy_id", type = IdType.AUTO)
+	@TableId(value = "deploy_id")
 	@ApiModelProperty(value = "ID", hidden = true)
     private Long id;
 

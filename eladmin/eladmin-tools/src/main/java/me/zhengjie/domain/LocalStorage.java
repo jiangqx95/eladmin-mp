@@ -35,9 +35,9 @@ import java.io.Serializable;
 @TableName("tool_local_storage")
 public class LocalStorage extends BaseEntity implements Serializable {
 
-    @TableId(value = "storage_id", type = IdType.AUTO)
+    @TableId(value = "storage_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
     @ApiModelProperty(value = "真实文件名")
     private String realName;

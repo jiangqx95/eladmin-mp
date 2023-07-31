@@ -40,7 +40,7 @@ import java.util.Set;
 public class Menu extends BaseEntity implements Serializable {
 
     @NotNull(groups = {Update.class})
-    @TableId(value="menu_id", type = IdType.AUTO)
+    @TableId(value="menu_id")
     @ApiModelProperty(value = "ID", hidden = true)
     private Long id;
 

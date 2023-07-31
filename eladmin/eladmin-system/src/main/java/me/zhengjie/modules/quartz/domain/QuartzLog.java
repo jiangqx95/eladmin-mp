@@ -29,7 +29,7 @@ import java.sql.Timestamp;
 @TableName("sys_quartz_log")
 public class QuartzLog implements Serializable {
 
-    @TableId(value = "log_id", type = IdType.AUTO)
+    @TableId(value = "log_id")
     @ApiModelProperty(value = "ID", hidden = true)
     private Long id;
 

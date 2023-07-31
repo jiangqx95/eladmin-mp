@@ -39,7 +39,7 @@ public class QiNiuConfigServiceImpl extends ServiceImpl<QiniuConfigMapper, Qiniu
     @Override
     @Cacheable(key = "'config'")
     public QiniuConfig getConfig() {
-        QiniuConfig qiniuConfig = getById(1L);
+        QiniuConfig qiniuConfig = getById("1");
         return qiniuConfig == null ? new QiniuConfig() : qiniuConfig;
     }
 
@@ -47,7 +47,7 @@ public class QiNiuConfigServiceImpl extends ServiceImpl<QiniuConfigMapper, Qiniu
     @CacheEvict(key = "'config'")
     @Transactional(rollbackFor = Exception.class)
     public void saveConfig(QiniuConfig qiniuConfig) {
-        qiniuConfig.setId(1L);
+        qiniuConfig.setId("1");
         String http = "http://", https = "https://";
         if (!(qiniuConfig.getHost().toLowerCase().startsWith(http)||qiniuConfig.getHost().toLowerCase().startsWith(https))) {
             throw new BadRequestException("外链域名必须以http://或者https://开头");
@@ -59,7 +59,7 @@ public class QiNiuConfigServiceImpl extends ServiceImpl<QiniuConfigMapper, Qiniu
     @CacheEvict(key = "'config'")
     @Transactional(rollbackFor = Exception.class)
     public void updateType(String type) {
-        QiniuConfig qiniuConfig = getById(1L);
+        QiniuConfig qiniuConfig = getById("1");
         qiniuConfig.setType(type);
         saveOrUpdate(qiniuConfig);
     }

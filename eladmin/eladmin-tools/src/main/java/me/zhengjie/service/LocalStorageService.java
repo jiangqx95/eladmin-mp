@@ -65,7 +65,7 @@ public interface LocalStorageService extends IService<LocalStorage> {
      * 多选删除
      * @param ids /
      */
-    void deleteAll(Long[] ids);
+    void deleteAll(String[] ids);
 
     /**
      * 导出数据

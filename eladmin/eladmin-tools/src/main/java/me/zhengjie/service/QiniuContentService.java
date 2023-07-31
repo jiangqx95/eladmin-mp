@@ -82,7 +82,7 @@ public interface QiniuContentService extends IService<QiniuContent> {
      * @param ids 文件ID数组
      * @param config 配置
      */
-    void deleteAll(Long[] ids, QiniuConfig config);
+    void deleteAll(String[] ids, QiniuConfig config);
 
     /**
      * 导出数据

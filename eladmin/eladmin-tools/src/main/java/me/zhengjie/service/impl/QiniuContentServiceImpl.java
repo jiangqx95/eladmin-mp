@@ -178,8 +178,8 @@ public class QiniuContentServiceImpl extends ServiceImpl<QiniuContentMapper, Qin
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void deleteAll(Long[] ids, QiniuConfig config) {
-        for (Long id : ids) {
+    public void deleteAll(String[] ids, QiniuConfig config) {
+        for (String id : ids) {
             delete(getById(id), config);
         }
     }

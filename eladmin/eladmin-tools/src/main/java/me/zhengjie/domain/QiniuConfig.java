@@ -33,7 +33,7 @@ import java.io.Serializable;
 public class QiniuConfig implements Serializable {
 
     @TableId("config_id")
-    private Long id;
+    private String id;
 
     @NotBlank
     @ApiModelProperty(value = "accessKey")

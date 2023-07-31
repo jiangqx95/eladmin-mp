@@ -41,7 +41,7 @@ import java.util.Set;
 public class User extends BaseEntity implements Serializable {
 
     @NotNull(groups = Update.class)
-    @TableId(value="user_id", type = IdType.AUTO)
+    @TableId(value="user_id")
     @ApiModelProperty(value = "ID", hidden = true)
     private Long id;
 

@@ -37,7 +37,7 @@ public class DictDetail extends BaseEntity implements Serializable {
 
     @NotNull(groups = Update.class)
     @ApiModelProperty(value = "ID", hidden = true)
-    @TableId(value = "detail_id", type = IdType.AUTO)
+    @TableId(value = "detail_id")
     private Long id;
 
     @TableField(value = "dict_id")

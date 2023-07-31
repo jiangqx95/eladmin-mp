@@ -44,7 +44,7 @@ public class AliPayServiceImpl extends ServiceImpl<AliPayConfigMapper, AlipayCon
     @Override
     @Cacheable(key = "'config'")
     public AlipayConfig find() {
-        AlipayConfig alipayConfig = getById(1L);
+        AlipayConfig alipayConfig = getById("1");
         return alipayConfig == null ? new AlipayConfig() : alipayConfig;
     }
 
@@ -52,7 +52,7 @@ public class AliPayServiceImpl extends ServiceImpl<AliPayConfigMapper, AlipayCon
     @CachePut(key = "'config'")
     @Transactional(rollbackFor = Exception.class)
     public AlipayConfig config(AlipayConfig alipayConfig) {
-        alipayConfig.setId(1L);
+        alipayConfig.setId("1");
         saveOrUpdate(alipayConfig);
         return alipayConfig;
     }

@@ -35,7 +35,7 @@ import java.sql.Timestamp;
 @TableName("mnt_deploy_history")
 public class DeployHistory implements Serializable {
 
-    @TableId(value = "history_id", type = IdType.AUTO)
+    @TableId(value = "history_id")
 	@ApiModelProperty(value = "ID", hidden = true)
     private String id;
 
