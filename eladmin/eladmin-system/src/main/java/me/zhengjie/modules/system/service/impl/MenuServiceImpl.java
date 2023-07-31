@@ -62,7 +62,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     private static final String YES_STR = "是";
     private static final String NO_STR = "否";
     private static final String BAD_REQUEST = "外链必须以http://或者https://开头";
-    
+
     @Override
     public List<Menu> queryAll(MenuQueryCriteria criteria, Boolean isQuery) throws Exception {
         if(Boolean.TRUE.equals(isQuery)){
@@ -116,7 +116,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
                 throw new EntityExistException(Menu.class,"componentName",resources.getComponentName());
             }
         }
-        if (Long.valueOf(0L).equals(resources.getPid())) {
+        if ("0".equals(resources.getPid())) {
             resources.setPid(null);
         }
         if(resources.getIFrame()){
@@ -149,7 +149,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
             throw new EntityExistException(Menu.class,"title",resources.getTitle());
         }
 
-        if(resources.getPid().equals(0L)){
+        if(resources.getPid().equals("0")){
             resources.setPid(null);
         }
 
@@ -210,7 +210,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     @Override
     public List<Menu> getMenus(Long pid) {
         List<Menu> menus;
-        if(pid != null && !pid.equals(0L)){
+        if(pid != null && !pid.equals("0")){
             menus = menuMapper.findByPidOrderByMenuSort(pid);
         } else {
             menus = menuMapper.findByPidIsNullOrderByMenuSort();
