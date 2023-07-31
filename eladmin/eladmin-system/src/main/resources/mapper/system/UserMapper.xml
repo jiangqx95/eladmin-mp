@@ -129,19 +129,19 @@
     </select>
 
     <select id="findByRoleId" resultType="me.zhengjie.modules.system.domain.User">
-        SELECT u.user_id as id, u.username FROM sys_user u, sys_users_roles r
+        SELECT /*+ GROUP_OPT_FLAG(1)*/ u.user_id as id, u.username FROM sys_user u, sys_users_roles r
         WHERE u.user_id = r.user_id AND r.role_id = #{roleId}
         group by u.user_id
     </select>
 
     <select id="findByRoleDeptId" resultType="me.zhengjie.modules.system.domain.User">
-        SELECT u.* FROM sys_user u, sys_users_roles r, sys_roles_depts d
+        SELECT /*+ GROUP_OPT_FLAG(1)*/ u.* FROM sys_user u, sys_users_roles r, sys_roles_depts d
         WHERE u.user_id = r.user_id AND r.role_id = d.role_id AND d.dept_id = #{deptId}
         group by u.user_id
     </select>
 
     <select id="findByMenuId" resultType="me.zhengjie.modules.system.domain.User">
-        SELECT u.user_id as id, u.username FROM sys_user u, sys_users_roles ur, sys_roles_menus rm
+        SELECT /*+ GROUP_OPT_FLAG(1)*/ u.user_id as id, u.username FROM sys_user u, sys_users_roles ur, sys_roles_menus rm
         WHERE u.user_id = ur.user_id AND ur.role_id = rm.role_id AND rm.menu_id = #{menuId}
         group by u.user_id
     </select>
