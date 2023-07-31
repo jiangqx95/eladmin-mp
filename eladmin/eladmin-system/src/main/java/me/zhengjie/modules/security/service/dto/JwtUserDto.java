@@ -34,7 +34,7 @@ public class JwtUserDto implements UserDetails {
 
     private final User user;
 
-    private final List<Long> dataScopes;
+    private final List<String> dataScopes;
 
     private final List<AuthorityDto> authorities;
 

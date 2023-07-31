@@ -36,5 +36,5 @@ public interface DictDetailMapper extends BaseMapper<DictDetail> {
 
     IPage<DictDetail> findAll(@Param("criteria") DictDetailQueryCriteria criteria, Page<Object> page);
 
-    void deleteByDictBatchIds(@Param("dictIds") Set<Long> dictIds);
+    void deleteByDictBatchIds(@Param("dictIds") Set<String> dictIds);
 }

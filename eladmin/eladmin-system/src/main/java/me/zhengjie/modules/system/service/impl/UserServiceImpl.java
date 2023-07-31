@@ -79,7 +79,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     @Cacheable(key = "'id:' + #p0")
     @Transactional(rollbackFor = Exception.class)
-    public User findById(long id) {
+    public User findById(String id) {
         return getById(id);
     }
 
@@ -172,8 +172,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Set<Long> ids) {
-        for (Long id : ids) {
+    public void delete(Set<String> ids) {
+        for (String id : ids) {
             // 清理缓存
             User user = getById(id);
             delCaches(user.getId(), user.getUsername());
@@ -209,7 +209,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void resetPwd(Set<Long> ids, String pwd) {
+    public void resetPwd(Set<String> ids, String pwd) {
         userMapper.resetPwd(ids, pwd);
     }
 
@@ -272,7 +272,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      *
      * @param id /
      */
-    public void delCaches(Long id, String username) {
+    public void delCaches(String id, String username) {
         redisUtils.del(CacheKey.USER_ID + id);
         flushCache(username);
     }

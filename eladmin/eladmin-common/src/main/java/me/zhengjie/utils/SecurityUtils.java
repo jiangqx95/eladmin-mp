@@ -66,23 +66,23 @@ public class SecurityUtils {
      * 获取系统用户ID
      * @return 系统用户ID
      */
-    public static Long getCurrentUserId() {
+    public static String getCurrentUserId() {
         UserDetails userDetails = getCurrentUser();
         // 将 Java 对象转换为 JSONObject 对象
         JSONObject jsonObject = (JSONObject) JSON.toJSON(userDetails);
-        return jsonObject.getJSONObject("user").getLong("id");
+        return jsonObject.getJSONObject("user").getString("id");
     }
 
     /**
      * 获取当前用户的数据权限
      * @return /
      */
-    public static List<Long> getCurrentUserDataScope(){
+    public static List<String> getCurrentUserDataScope(){
         UserDetails userDetails = getCurrentUser();
         // 将 Java 对象转换为 JSONObject 对象
         JSONObject jsonObject = (JSONObject) JSON.toJSON(userDetails);
         JSONArray jsonArray = jsonObject.getJSONArray("dataScopes");
-        return JSON.parseArray(jsonArray.toJSONString(), Long.class);
+        return JSON.parseArray(jsonArray.toJSONString(), String.class);
     }
 
     /**
@@ -90,7 +90,7 @@ public class SecurityUtils {
      * @return 级别
      */
     public static String getDataScopeType() {
-        List<Long> dataScopes = getCurrentUserDataScope();
+        List<String> dataScopes = getCurrentUserDataScope();
         if(dataScopes.size() != 0){
             return "";
         }

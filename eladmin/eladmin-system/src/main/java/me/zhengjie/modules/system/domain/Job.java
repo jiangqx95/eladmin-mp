@@ -39,7 +39,7 @@ public class Job extends BaseEntity implements Serializable {
     @NotNull(groups = Update.class)
     @TableId(value="job_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
     @NotBlank
     @ApiModelProperty(value = "岗位名称")

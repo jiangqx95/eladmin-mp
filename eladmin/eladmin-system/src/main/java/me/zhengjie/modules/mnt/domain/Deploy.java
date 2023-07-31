@@ -42,10 +42,10 @@ public class Deploy extends BaseEntity implements Serializable {
 
 	@TableId(value = "deploy_id")
 	@ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
 	@ApiModelProperty(value = "应用编号")
-	private Long appId;
+	private String appId;
 
 	@TableField(exist = false)
 	@ApiModelProperty(name = "服务器", hidden = true)

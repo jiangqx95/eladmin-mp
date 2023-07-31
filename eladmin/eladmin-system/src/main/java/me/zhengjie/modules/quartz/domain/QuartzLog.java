@@ -31,7 +31,7 @@ public class QuartzLog implements Serializable {
 
     @TableId(value = "log_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
     @ApiModelProperty(value = "任务名称", hidden = true)
     private String jobName;

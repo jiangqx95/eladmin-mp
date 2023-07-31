@@ -64,7 +64,7 @@ public interface ServerService extends IService<Server> {
      * 删除
      * @param ids /
      */
-    void delete(Set<Long> ids);
+    void delete(Set<String> ids);
 
     /**
      * 根据IP查询

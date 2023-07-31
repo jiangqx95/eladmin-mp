@@ -88,11 +88,11 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App> implements AppSe
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Set<Long> ids) {
+    public void delete(Set<String> ids) {
         // 删除应用
         removeBatchByIds(ids);
         // 删除部署
-        Set<Long> deployIds = deployMapper.getIdByAppIds(ids);
+        Set<String> deployIds = deployMapper.getIdByAppIds(ids);
         if(deployIds != null && deployIds.size() > 0){
             deployServerMapper.deleteByDeployIds(deployIds);
             deployMapper.deleteBatchIds(deployIds);

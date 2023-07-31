@@ -90,7 +90,7 @@ public class ServerServiceImpl extends ServiceImpl<ServerMapper, Server> impleme
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Set<Long> ids) {
+    public void delete(Set<String> ids) {
         removeBatchByIds(ids);
         // 删除与之关联的服务
         deployServerMapper.deleteByServerIds(ids);

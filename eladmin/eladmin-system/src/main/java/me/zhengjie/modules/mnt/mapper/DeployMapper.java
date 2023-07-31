@@ -34,8 +34,8 @@ public interface DeployMapper extends BaseMapper<Deploy> {
     Long countAll(@Param("criteria") DeployQueryCriteria criteria);
 
     List<Deploy> findAll(@Param("criteria") DeployQueryCriteria criteria);
-    
-    Set<Long> getIdByAppIds(@Param("appIds") Set<Long> appIds);
 
-    Deploy getDeployById(@Param("deployId") Long deployId);
+    Set<String> getIdByAppIds(@Param("appIds") Set<String> appIds);
+
+    Deploy getDeployById(@Param("deployId") String deployId);
 }

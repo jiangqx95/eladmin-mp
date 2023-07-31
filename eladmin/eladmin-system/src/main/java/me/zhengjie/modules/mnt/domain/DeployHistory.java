@@ -52,7 +52,7 @@ public class DeployHistory implements Serializable {
     private String deployUser;
 
 	@ApiModelProperty(value = "部署ID")
-	private Long deployId;
+	private String deployId;
 
     public void copy(DeployHistory source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));

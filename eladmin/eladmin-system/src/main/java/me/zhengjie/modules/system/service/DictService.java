@@ -64,7 +64,7 @@ public interface DictService extends IService<Dict> {
      * 删除
      * @param ids /
      */
-    void delete(Set<Long> ids);
+    void delete(Set<String> ids);
 
     /**
      * 导出数据

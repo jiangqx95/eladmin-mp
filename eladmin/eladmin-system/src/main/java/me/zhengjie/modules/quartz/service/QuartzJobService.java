@@ -81,7 +81,7 @@ public interface QuartzJobService extends IService<QuartzJob> {
      * 删除任务
      * @param ids /
      */
-    void delete(Set<Long> ids);
+    void delete(Set<String> ids);
 
     /**
      * 更改定时任务状态

@@ -42,7 +42,7 @@ public class Menu extends BaseEntity implements Serializable {
     @NotNull(groups = {Update.class})
     @TableId(value="menu_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
     @TableField(exist = false)
     @JSONField(serialize = false)
@@ -84,7 +84,7 @@ public class Menu extends BaseEntity implements Serializable {
     private Boolean hidden;
 
     @ApiModelProperty(value = "上级菜单")
-    private Long pid;
+    private String pid;
 
     @ApiModelProperty(value = "子节点数目", hidden = true)
     private Integer subCount = 0;

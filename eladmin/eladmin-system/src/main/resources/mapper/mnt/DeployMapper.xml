@@ -72,7 +72,7 @@
         <include refid="Where_sql"/>
     </select>
 
-    <select id="getIdByAppIds" resultType="java.lang.Long">
+    <select id="getIdByAppIds" resultType="java.lang.String">
         select deploy.deploy_id
         from mnt_deploy deploy
         where deploy.app_id in

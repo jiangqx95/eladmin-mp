@@ -34,11 +34,11 @@ public interface MenuMapper extends BaseMapper<Menu> {
 
     List<Menu> findAll(@Param("criteria") MenuQueryCriteria criteria);
 
-    LinkedHashSet<Menu> findByRoleIdsAndTypeNot(@Param("roleIds") Set<Long> roleIds, @Param("type") Integer type);
+    LinkedHashSet<Menu> findByRoleIdsAndTypeNot(@Param("roleIds") Set<String> roleIds, @Param("type") Integer type);
 
     List<Menu> findByPidIsNullOrderByMenuSort();
 
-    List<Menu> findByPidOrderByMenuSort(@Param("pid") Long pid);
+    List<Menu> findByPidOrderByMenuSort(@Param("pid") String pid);
 
     @Select("SELECT menu_id id FROM sys_menu WHERE title = #{title}")
     Menu findByTitle(@Param("title") String title);
@@ -47,8 +47,8 @@ public interface MenuMapper extends BaseMapper<Menu> {
     Menu findByComponentName(@Param("name") String name);
 
     @Select("SELECT count(*) FROM sys_menu WHERE pid = #{pid}")
-    int countByPid(@Param("pid") Long pid);
+    int countByPid(@Param("pid") String pid);
 
     @Select("update sys_menu set sub_count = #{count} where menu_id = #{menuId} ")
-    void updateSubCntById(@Param("count") int count, @Param("menuId") Long menuId);
+    void updateSubCntById(@Param("count") int count, @Param("menuId") String menuId);
 }

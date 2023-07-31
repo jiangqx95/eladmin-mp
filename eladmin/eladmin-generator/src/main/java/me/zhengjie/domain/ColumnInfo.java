@@ -37,7 +37,7 @@ public class ColumnInfo implements Serializable {
 
     @ApiModelProperty(value = "ID", hidden = true)
     @TableId(value = "column_id")
-    private Long id;
+    private String id;
 
     @ApiModelProperty(value = "表名")
     private String tableName;

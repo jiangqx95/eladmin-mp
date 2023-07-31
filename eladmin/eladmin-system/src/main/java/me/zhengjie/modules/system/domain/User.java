@@ -43,7 +43,7 @@ public class User extends BaseEntity implements Serializable {
     @NotNull(groups = Update.class)
     @TableId(value="user_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
     @TableField(exist = false)
     @ApiModelProperty(value = "用户角色")
@@ -55,7 +55,7 @@ public class User extends BaseEntity implements Serializable {
 
     @TableField(value = "dept_id")
     @ApiModelProperty(hidden = true)
-    private Long deptId;
+    private String deptId;
 
     @ApiModelProperty(value = "用户部门")
     @TableField(exist = false)

@@ -710,9 +710,9 @@ public class RedisUtils {
      * @param prefix 前缀
      * @param ids    id
      */
-    public void delByKeys(String prefix, Set<Long> ids) {
+    public void delByKeys(String prefix, Set<String> ids) {
         Set<Object> keys = new HashSet<>();
-        for (Long id : ids) {
+        for (String id : ids) {
             keys.addAll(redisTemplate.keys(new StringBuffer(prefix).append(id).toString()));
         }
         long count = redisTemplate.delete(keys);

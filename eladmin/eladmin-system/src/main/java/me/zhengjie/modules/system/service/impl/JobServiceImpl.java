@@ -60,7 +60,7 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements JobSe
 
     @Override
     @Cacheable(key = "'id:' + #p0")
-    public Job findById(Long id) {
+    public Job findById(String id) {
         return getById(id);
     }
 
@@ -89,7 +89,7 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements JobSe
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Set<Long> ids) {
+    public void delete(Set<String> ids) {
         removeBatchByIds(ids);
         // 删除缓存
         redisUtils.delByKeys(CacheKey.JOB_ID, ids);
@@ -109,7 +109,7 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements JobSe
     }
 
     @Override
-    public void verification(Set<Long> ids) {
+    public void verification(Set<String> ids) {
         if(userMapper.countByJobs(ids) > 0){
             throw new BadRequestException("所选的岗位中存在用户关联，请解除关联再试！");
         }

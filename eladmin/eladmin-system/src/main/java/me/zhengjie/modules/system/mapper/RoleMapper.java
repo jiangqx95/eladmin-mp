@@ -33,18 +33,18 @@ public interface RoleMapper extends BaseMapper<Role> {
 
     List<Role> queryAll();
 
-    Role findById(@Param("roleId") Long roleId);
+    Role findById(@Param("roleId") String roleId);
     Role findByName(@Param("name") String name);
 
-    List<Role> findByUserId(@Param("userId") Long userId);
+    List<Role> findByUserId(@Param("userId") String userId);
 
     Long countAll(@Param("criteria") RoleQueryCriteria criteria);
 
     List<Role> findAll(@Param("criteria") RoleQueryCriteria criteria);
 
-    int countByDepts(@Param("deptIds") Set<Long> deptIds);
+    int countByDepts(@Param("deptIds") Set<String> deptIds);
 
     @Select("SELECT role.role_id as id FROM sys_role role, sys_roles_menus rm " +
             "WHERE role.role_id = rm.role_id AND rm.menu_id = #{menuId}")
-    List<Role> findByMenuId(@Param("menuId") Long menuId);
+    List<Role> findByMenuId(@Param("menuId") String menuId);
 }

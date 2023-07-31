@@ -45,7 +45,7 @@ public interface MenuService extends IService<Menu> {
      * @param id /
      * @return /
      */
-    Menu findById(long id);
+    Menu findById(String id);
 
     /**
      * 创建
@@ -100,7 +100,7 @@ public interface MenuService extends IService<Menu> {
      * @param pid /
      * @return /
      */
-    List<Menu> getMenus(Long pid);
+    List<Menu> getMenus(String pid);
 
     /**
      * 根据ID获取同级与上级数据
@@ -115,5 +115,5 @@ public interface MenuService extends IService<Menu> {
      * @param currentUserId /
      * @return /
      */
-    List<Menu> findByUser(Long currentUserId);
+    List<Menu> findByUser(String currentUserId);
 }

@@ -32,5 +32,5 @@ public class MenuQueryCriteria {
 
     private Boolean pidIsNull;
 
-    private Long pid;
+    private String pid;
 }

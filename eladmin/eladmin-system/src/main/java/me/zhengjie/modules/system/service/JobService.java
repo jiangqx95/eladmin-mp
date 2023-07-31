@@ -37,7 +37,7 @@ public interface JobService extends IService<Job> {
      * @param id /
      * @return /
      */
-    Job findById(Long id);
+    Job findById(String id);
 
     /**
      * 创建
@@ -55,7 +55,7 @@ public interface JobService extends IService<Job> {
      * 删除
      * @param ids /
      */
-    void delete(Set<Long> ids);
+    void delete(Set<String> ids);
 
     /**
      * 分页查询
@@ -85,5 +85,5 @@ public interface JobService extends IService<Job> {
      * 验证是否被用户关联
      * @param ids /
      */
-    void verification(Set<Long> ids);
+    void verification(Set<String> ids);
 }

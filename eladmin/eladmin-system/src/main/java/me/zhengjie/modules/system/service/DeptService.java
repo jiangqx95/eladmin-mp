@@ -43,7 +43,7 @@ public interface DeptService extends IService<Dept> {
      * @param id /
      * @return /
      */
-    Dept findById(Long id);
+    Dept findById(String id);
 
     /**
      * 创建
@@ -69,14 +69,14 @@ public interface DeptService extends IService<Dept> {
      * @param pid /
      * @return /
      */
-    List<Dept> findByPid(long pid);
+    List<Dept> findByPid(String pid);
 
     /**
      * 根据角色ID查询
      * @param id /
      * @return /
      */
-    Set<Dept> findByRoleId(Long id);
+    Set<Dept> findByRoleId(String id);
 
     /**
      * 导出数据
@@ -114,7 +114,7 @@ public interface DeptService extends IService<Dept> {
      * @param deptList 、
      * @return 、
      */
-    List<Long> getDeptChildren(List<Dept> deptList);
+    List<String> getDeptChildren(List<Dept> deptList);
 
     /**
      * 验证是否被角色或用户关联

@@ -78,7 +78,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Set<Long> ids) {
+    public void delete(Set<String> ids) {
         // 清理缓存
         List<Dict> dicts = dictMapper.selectBatchIds(ids);
         for (Dict dict : dicts) {

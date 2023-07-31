@@ -39,7 +39,7 @@ public interface UserService extends IService<User> {
      * @param id ID
      * @return /
      */
-    User findById(long id);
+    User findById(String id);
 
     /**
      * 新增用户
@@ -58,7 +58,7 @@ public interface UserService extends IService<User> {
      * 删除用户
      * @param ids /
      */
-    void delete(Set<Long> ids);
+    void delete(Set<String> ids);
 
     /**
      * 根据用户名查询
@@ -132,5 +132,5 @@ public interface UserService extends IService<User> {
      * @param ids 用户id
      * @param pwd 密码
      */
-    void resetPwd(Set<Long> ids, String pwd);
+    void resetPwd(Set<String> ids, String pwd);
 }

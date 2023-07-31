@@ -26,9 +26,9 @@ import java.util.Set;
  */
 @Mapper
 public interface UserRoleMapper {
-    void insertData(@Param("userId") Long userId, @Param("roles") Set<Role> roles);
+    void insertData(@Param("userId") String userId, @Param("roles") Set<Role> roles);
 
-    void deleteByUserId(@Param("userId") Long userId);
+    void deleteByUserId(@Param("userId") String userId);
 
-    void deleteByUserIds(@Param("userIds") Set<Long> userIds);
+    void deleteByUserIds(@Param("userIds") Set<String> userIds);
 }
