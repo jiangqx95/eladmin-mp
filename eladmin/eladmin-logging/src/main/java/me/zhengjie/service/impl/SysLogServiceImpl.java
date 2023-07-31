@@ -78,7 +78,7 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
 
         // 描述
         sysLog.setDescription(aopLog.value());
-        
+
         sysLog.setRequestIp(ip);
         sysLog.setAddress(StringUtils.getCityInfo(sysLog.getRequestIp()));
         sysLog.setMethod(methodName);
@@ -130,7 +130,7 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
     }
 
     @Override
-    public Object findByErrDetail(Long id) {
+    public Object findByErrDetail(String id) {
         String details = sysLogMapper.getExceptionDetails(id);
         return Dict.create().set("exception", details);
     }
