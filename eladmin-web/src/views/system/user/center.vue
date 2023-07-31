@@ -65,7 +65,7 @@
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="24" :md="16" :lg="18" :xl="19">
-        <!--    用户资料    -->
+        <!--用户资料-->
         <el-card class="box-card">
           <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane label="用户资料" name="first">
@@ -98,7 +98,7 @@
                 </el-form-item>
               </el-form>
             </el-tab-pane>
-            <!--    操作日志    -->
+            <!--操作日志-->
             <el-tab-pane label="操作日志" name="second">
               <el-table v-loading="loading" :border="true" :data="data" style="width: 100%;">
                 <el-table-column prop="description" label="行为" />
@@ -112,14 +112,11 @@
                     <el-tag v-else type="danger">{{ scope.row.time }}ms</el-tag>
                   </template>
                 </el-table-column>
-                <el-table-column
-                  align="right"
-                >
+                <el-table-column align="right">
                   <template slot="header">
-                    <div style="display:inline-block;float: right;cursor: pointer" @click="init">创建日期<i
-                      class="el-icon-refresh"
-                      style="margin-left: 40px"
-                    /></div>
+                    <div style="display:inline-block;float: right;cursor: pointer" @click="init">创建日期
+                      <i class="el-icon-refresh" style="margin-left: 40px" />
+                    </div>
                   </template>
                   <template slot-scope="scope">
                     <span>{{ scope.row.createTime }}</span>
@@ -129,7 +126,8 @@
               <!--分页组件-->
               <el-pagination
                 :total="total"
-                :current-page="page + 1"
+                background
+                :current-page="page"
                 style="margin-top: 8px;text-align: right"
                 layout="total, prev, pager, next, sizes"
                 @size-change="sizeChange"
