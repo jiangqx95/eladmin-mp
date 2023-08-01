@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -32,16 +33,16 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
-* @author Zheng Jie
-* @date 2019-03-25
-*/
+ * @author Zheng Jie
+ * @date 2019-03-25
+ */
 @Getter
 @Setter
 @TableName("sys_dept")
 public class Dept extends BaseEntity implements Serializable {
 
     @NotNull(groups = Update.class)
-    @TableId(value="dept_id", type = IdType.AUTO)
+    @TableId(value = "dept_id", type = IdType.AUTO)
     @ApiModelProperty(value = "ID", hidden = true)
     private Long id;
 

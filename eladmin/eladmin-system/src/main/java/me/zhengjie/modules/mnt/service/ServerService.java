@@ -27,9 +27,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
-* @author zhanghouying
-* @date 2019-08-24
-*/
+ * @author zhanghouying
+ * @date 2019-08-24
+ */
 public interface ServerService extends IService<Server> {
 
     /**
@@ -43,6 +43,7 @@ public interface ServerService extends IService<Server> {
 
     /**
      * 查询全部数据
+     *
      * @param criteria 条件
      * @return /
      */
@@ -50,18 +51,21 @@ public interface ServerService extends IService<Server> {
 
     /**
      * 创建
+     *
      * @param resources /
      */
     void create(Server resources);
 
     /**
      * 编辑
+     *
      * @param resources /
      */
     void update(Server resources);
 
     /**
      * 删除
+     *
      * @param ids /
      */
     void delete(Set<Long> ids);
@@ -74,15 +78,17 @@ public interface ServerService extends IService<Server> {
      */
     Server findByIp(String ip);
 
-	/**
-	 * 测试登录服务器
-	 * @param resources /
-	 * @return /
-	 */
-	Boolean testConnect(Server resources);
+    /**
+     * 测试登录服务器
+     *
+     * @param resources /
+     * @return /
+     */
+    Boolean testConnect(Server resources);
 
     /**
      * 导出数据
+     *
      * @param queryAll /
      * @param response /
      * @throws IOException /

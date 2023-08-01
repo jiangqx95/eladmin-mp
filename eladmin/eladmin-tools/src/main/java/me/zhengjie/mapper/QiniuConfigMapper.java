@@ -16,7 +16,6 @@
 package me.zhengjie.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import me.zhengjie.domain.EmailConfig;
 import me.zhengjie.domain.QiniuConfig;
 import org.apache.ibatis.annotations.Mapper;
 

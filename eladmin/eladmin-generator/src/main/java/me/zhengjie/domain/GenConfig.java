@@ -28,6 +28,7 @@ import java.io.Serializable;
 
 /**
  * 代码生成配置
+ *
  * @author Zheng Jie
  * @date 2019-01-03
  */

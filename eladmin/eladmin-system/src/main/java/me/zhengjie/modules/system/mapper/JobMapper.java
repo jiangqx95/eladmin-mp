@@ -23,12 +23,13 @@ import me.zhengjie.modules.system.domain.vo.JobQueryCriteria;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+
 import java.util.List;
 
 /**
-* @author Zheng Jie
-* @date 2023-06-20
-*/
+ * @author Zheng Jie
+ * @date 2023-06-20
+ */
 @Mapper
 public interface JobMapper extends BaseMapper<Job> {
 

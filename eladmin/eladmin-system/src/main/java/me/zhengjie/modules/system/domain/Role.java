@@ -24,6 +24,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
 import me.zhengjie.utils.enums.DataScopeEnum;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -32,6 +33,7 @@ import java.util.Set;
 
 /**
  * 角色
+ *
  * @author Zheng Jie
  * @date 2018-11-22
  */
@@ -41,7 +43,7 @@ import java.util.Set;
 public class Role extends BaseEntity implements Serializable {
 
     @NotNull(groups = {Update.class})
-    @TableId(value="role_id", type = IdType.AUTO)
+    @TableId(value = "role_id", type = IdType.AUTO)
     @ApiModelProperty(value = "ID", hidden = true)
     private Long id;
 

@@ -20,21 +20,25 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import me.zhengjie.modules.system.domain.Dict;
 import me.zhengjie.modules.system.domain.DictDetail;
-import me.zhengjie.modules.system.mapper.DictMapper;
 import me.zhengjie.modules.system.domain.vo.DictDetailQueryCriteria;
-import me.zhengjie.utils.*;
 import me.zhengjie.modules.system.mapper.DictDetailMapper;
+import me.zhengjie.modules.system.mapper.DictMapper;
 import me.zhengjie.modules.system.service.DictDetailService;
+import me.zhengjie.utils.CacheKey;
+import me.zhengjie.utils.PageResult;
+import me.zhengjie.utils.PageUtil;
+import me.zhengjie.utils.RedisUtils;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 /**
-* @author Zheng Jie
-* @date 2019-04-10
-*/
+ * @author Zheng Jie
+ * @date 2019-04-10
+ */
 @Service
 @RequiredArgsConstructor
 @CacheConfig(cacheNames = "dict")
@@ -83,7 +87,7 @@ public class DictDetailServiceImpl extends ServiceImpl<DictDetailMapper, DictDet
         delCaches(dictDetail);
     }
 
-    public void delCaches(DictDetail dictDetail){
+    public void delCaches(DictDetail dictDetail) {
         Dict dict = dictMapper.selectById(dictDetail.getDict().getId());
         redisUtils.del(CacheKey.DICT_NAME + dict.getName());
     }

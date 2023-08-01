@@ -31,7 +31,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 @Mapper
 public interface ${className}Mapper extends BaseMapper<${className}> {
 
-    IPage<${className}> findAll(@Param("criteria") ${className}QueryCriteria criteria, Page<Object> page);
+IPage<${className}> findAll(@Param("criteria") ${className}QueryCriteria criteria, Page
+<Object> page);
 
     List<${className}> findAll(@Param("criteria") ${className}QueryCriteria criteria);
-}
+    }

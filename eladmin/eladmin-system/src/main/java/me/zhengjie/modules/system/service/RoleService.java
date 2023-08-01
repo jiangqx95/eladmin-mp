@@ -36,12 +36,14 @@ public interface RoleService extends IService<Role> {
 
     /**
      * 查询全部数据
+     *
      * @return /
      */
     List<Role> queryAll();
 
     /**
      * 根据ID查询
+     *
      * @param id /
      * @return /
      */
@@ -49,24 +51,28 @@ public interface RoleService extends IService<Role> {
 
     /**
      * 创建
+     *
      * @param resources /
      */
     void create(Role resources);
 
     /**
      * 编辑
+     *
      * @param resources /
      */
     void update(Role resources);
 
     /**
      * 删除
+     *
      * @param ids /
      */
     void delete(Set<Long> ids);
 
     /**
      * 根据用户ID查询
+     *
      * @param userId 用户ID
      * @return /
      */
@@ -74,6 +80,7 @@ public interface RoleService extends IService<Role> {
 
     /**
      * 根据角色查询角色级别
+     *
      * @param roles /
      * @return /
      */
@@ -81,6 +88,7 @@ public interface RoleService extends IService<Role> {
 
     /**
      * 修改绑定的菜单
+     *
      * @param resources /
      */
     void updateMenu(Role resources);
@@ -96,6 +104,7 @@ public interface RoleService extends IService<Role> {
 
     /**
      * 查询全部
+     *
      * @param criteria 条件
      * @return /
      */
@@ -103,7 +112,8 @@ public interface RoleService extends IService<Role> {
 
     /**
      * 导出数据
-     * @param roles 待导出的数据
+     *
+     * @param roles    待导出的数据
      * @param response /
      * @throws IOException /
      */
@@ -111,6 +121,7 @@ public interface RoleService extends IService<Role> {
 
     /**
      * 获取用户权限信息
+     *
      * @param user 用户信息
      * @return 权限信息
      */
@@ -118,12 +129,14 @@ public interface RoleService extends IService<Role> {
 
     /**
      * 验证是否被用户关联
+     *
      * @param ids /
      */
     void verification(Set<Long> ids);
 
     /**
      * 根据菜单Id查询
+     *
      * @param menuId /
      * @return /
      */

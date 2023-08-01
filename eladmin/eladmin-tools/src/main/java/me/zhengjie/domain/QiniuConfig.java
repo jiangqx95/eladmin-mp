@@ -15,16 +15,17 @@
  */
 package me.zhengjie.domain;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 /**
  * 七牛云对象存储配置类
+ *
  * @author Zheng Jie
  * @date 2018-12-31
  */

@@ -21,6 +21,7 @@ import me.zhengjie.domain.GenConfig;
 import me.zhengjie.mapper.GenConfigMapper;
 import me.zhengjie.service.GenConfigService;
 import org.springframework.stereotype.Service;
+
 import java.io.File;
 
 /**
@@ -29,7 +30,7 @@ import java.io.File;
  */
 @Service
 @RequiredArgsConstructor
-@SuppressWarnings({"unchecked","all"})
+@SuppressWarnings({"unchecked", "all"})
 public class GenConfigServiceImpl extends ServiceImpl<GenConfigMapper, GenConfig> implements GenConfigService {
 
     private final GenConfigMapper genConfigMapper;
@@ -37,7 +38,7 @@ public class GenConfigServiceImpl extends ServiceImpl<GenConfigMapper, GenConfig
     @Override
     public GenConfig find(String tableName) {
         GenConfig genConfig = genConfigMapper.findByTableName(tableName);
-        if(genConfig == null){
+        if (genConfig == null) {
             return new GenConfig(tableName);
         }
         return genConfig;

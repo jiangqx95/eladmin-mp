@@ -44,7 +44,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public JwtUserDto loadUserByUsername(String username) {
         JwtUserDto jwtUserDto = userCacheManager.getUserCache(username);
-        if(jwtUserDto == null){
+        if (jwtUserDto == null) {
             User user;
             try {
                 user = userService.getLoginData(username);

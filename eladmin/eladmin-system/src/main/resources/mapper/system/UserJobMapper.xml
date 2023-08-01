@@ -11,7 +11,8 @@
     </insert>
 
     <delete id="deleteByUserId">
-        delete from sys_users_jobs
+        delete
+        from sys_users_jobs
         where user_id = #{userId}
     </delete>
 

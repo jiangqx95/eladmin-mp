@@ -16,19 +16,20 @@
 package me.zhengjie.modules.mnt.domain.vo;
 
 import lombok.Data;
+
 import java.sql.Timestamp;
 import java.util.List;
 
 /**
-* @author zhanghouying
-* @date 2019-08-24
-*/
+ * @author zhanghouying
+ * @date 2019-08-24
+ */
 @Data
-public class DatabaseQueryCriteria{
+public class DatabaseQueryCriteria {
 
     private String name;
 
     private String jdbcUrl;
 
-	private List<Timestamp> createTime;
+    private List<Timestamp> createTime;
 }

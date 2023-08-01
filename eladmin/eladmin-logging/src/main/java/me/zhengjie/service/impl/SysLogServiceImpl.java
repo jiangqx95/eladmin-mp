@@ -22,10 +22,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import me.zhengjie.domain.SysLog;
+import me.zhengjie.domain.vo.SysLogQueryCriteria;
 import me.zhengjie.mapper.SysLogMapper;
 import me.zhengjie.service.SysLogService;
-import me.zhengjie.domain.vo.SysLogQueryCriteria;
-import me.zhengjie.utils.*;
+import me.zhengjie.utils.FileUtil;
+import me.zhengjie.utils.PageResult;
+import me.zhengjie.utils.PageUtil;
+import me.zhengjie.utils.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Service;
@@ -33,6 +36,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -78,14 +82,14 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
 
         // 描述
         sysLog.setDescription(aopLog.value());
-        
+
         sysLog.setRequestIp(ip);
         sysLog.setAddress(StringUtils.getCityInfo(sysLog.getRequestIp()));
         sysLog.setMethod(methodName);
         sysLog.setUsername(username);
         sysLog.setParams(getParameter(method, joinPoint.getArgs()));
         // 记录登录用户，隐藏密码信息
-        if(signature.getName().equals("login") && StringUtils.isNotEmpty(sysLog.getParams())){
+        if (signature.getName().equals("login") && StringUtils.isNotEmpty(sysLog.getParams())) {
             JSONObject obj = JSON.parseObject(sysLog.getParams());
             sysLog.setUsername(obj.getString("username"));
             sysLog.setParams(JSON.toJSONString(Dict.create().set("username", sysLog.getUsername())));

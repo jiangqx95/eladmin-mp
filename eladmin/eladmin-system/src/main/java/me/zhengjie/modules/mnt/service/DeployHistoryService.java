@@ -50,18 +50,21 @@ public interface DeployHistoryService extends IService<DeployHistory> {
 
     /**
      * 创建
+     *
      * @param resources /
      */
     void create(DeployHistory resources);
 
     /**
      * 删除
+     *
      * @param ids /
      */
     void delete(Set<String> ids);
 
     /**
      * 导出数据
+     *
      * @param queryAll /
      * @param response /
      * @throws IOException /
