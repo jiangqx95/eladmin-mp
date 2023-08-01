@@ -27,13 +27,13 @@ import java.util.List;
 @Data
 public class DeptQueryCriteria {
 
-    private List<Long> ids;
+    private List<String> ids;
 
     private String name;
 
     private Boolean enabled;
 
-    private Long pid;
+    private String pid;
 
     private Boolean pidIsNull;
 

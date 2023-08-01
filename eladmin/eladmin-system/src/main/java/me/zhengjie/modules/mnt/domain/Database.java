@@ -36,7 +36,7 @@ import java.io.Serializable;
 @TableName("mnt_database")
 public class Database extends BaseEntity implements Serializable {
 
-    @TableId(value = "db_id", type = IdType.AUTO)
+    @TableId(value = "db_id")
     @ApiModelProperty(value = "ID", hidden = true)
     private String id;
 

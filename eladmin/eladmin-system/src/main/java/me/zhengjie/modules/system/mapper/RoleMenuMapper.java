@@ -27,11 +27,11 @@ import java.util.Set;
  */
 @Mapper
 public interface RoleMenuMapper {
-    void insertData(@Param("roleId") Long roleId, @Param("menus") Set<Menu> menus);
+    void insertData(@Param("roleId") String roleId, @Param("menus") Set<Menu> menus);
 
-    void deleteByRoleId(@Param("roleId") Long roleId);
+    void deleteByRoleId(@Param("roleId") String roleId);
 
-    void deleteByRoleIds(@Param("roleIds") Set<Long> roleIds);
+    void deleteByRoleIds(@Param("roleIds") Set<String> roleIds);
 
-    void deleteByMenuId(@Param("menuId") Long menuId);
+    void deleteByMenuId(@Param("menuId") String menuId);
 }

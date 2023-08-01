@@ -38,9 +38,9 @@ import java.util.Objects;
 public class Job extends BaseEntity implements Serializable {
 
     @NotNull(groups = Update.class)
-    @TableId(value = "job_id", type = IdType.AUTO)
+    @TableId(value = "job_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
     @NotBlank
     @ApiModelProperty(value = "岗位名称")
@@ -48,7 +48,7 @@ public class Job extends BaseEntity implements Serializable {
 
     @NotNull
     @ApiModelProperty(value = "岗位排序")
-    private Long jobSort;
+    private String jobSort;
 
     @NotNull
     @ApiModelProperty(value = "是否启用")

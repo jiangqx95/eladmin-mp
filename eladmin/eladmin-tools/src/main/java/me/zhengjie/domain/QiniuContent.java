@@ -32,9 +32,9 @@ import java.sql.Timestamp;
 @TableName("tool_qiniu_content")
 public class QiniuContent implements Serializable {
 
-    @TableId(value = "content_id", type = IdType.AUTO)
+    @TableId(value = "content_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
     @TableField("name")
     @ApiModelProperty(value = "文件名")

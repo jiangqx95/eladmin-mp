@@ -44,7 +44,7 @@ public class ${className} implements Serializable {
     <#list columns as column>
 
         <#if column.columnKey = 'PRI'>
-            @TableId(value = "${column.columnName}"<#if auto>, type = IdType.AUTO</#if>)
+            @TableId(value = "${column.columnName}"<#if auto></#if>)
         </#if>
         <#if column.istNotNull && column.columnKey != 'PRI'>
             <#if column.columnType = 'String'>

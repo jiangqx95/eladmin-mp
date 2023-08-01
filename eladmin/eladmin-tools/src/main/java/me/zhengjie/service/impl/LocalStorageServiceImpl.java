@@ -100,8 +100,8 @@ public class LocalStorageServiceImpl extends ServiceImpl<LocalStorageMapper, Loc
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void deleteAll(Long[] ids) {
-        for (Long id : ids) {
+    public void deleteAll(String[] ids) {
+        for (String id : ids) {
             LocalStorage storage = getById(id);
             FileUtil.del(storage.getPath());
             removeById(storage);

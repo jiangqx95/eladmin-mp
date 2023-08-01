@@ -29,11 +29,11 @@ import java.util.Set;
 @Mapper
 public interface DeployServerMapper {
 
-    void insertData(@Param("deployId") Long deployId, @Param("servers") Set<Server> servers);
+    void insertData(@Param("deployId") String deployId, @Param("servers") Set<Server> servers);
 
-    void deleteByDeployId(@Param("deployId") Long deployId);
+    void deleteByDeployId(@Param("deployId") String deployId);
 
-    void deleteByDeployIds(@Param("deployIds") Set<Long> deployIds);
+    void deleteByDeployIds(@Param("deployIds") Set<String> deployIds);
 
-    void deleteByServerIds(@Param("serverIds") Set<Long> serverIds);
+    void deleteByServerIds(@Param("serverIds") Set<String> serverIds);
 }

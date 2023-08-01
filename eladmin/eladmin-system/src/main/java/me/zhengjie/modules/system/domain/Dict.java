@@ -40,8 +40,8 @@ public class Dict extends BaseEntity implements Serializable {
 
     @NotNull(groups = Update.class)
     @ApiModelProperty(value = "ID", hidden = true)
-    @TableId(value = "dict_id", type = IdType.AUTO)
-    private Long id;
+    @TableId(value = "dict_id")
+    private String id;
 
     @TableField(exist = false)
     private List<DictDetail> dictDetails;

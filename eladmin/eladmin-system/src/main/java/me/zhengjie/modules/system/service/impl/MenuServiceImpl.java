@@ -91,7 +91,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 
     @Override
     @Cacheable(key = "'id:' + #p0")
-    public Menu findById(long id) {
+    public Menu findById(String id) {
         return getById(id);
     }
 
@@ -103,9 +103,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
      */
     @Override
     @Cacheable(key = "'user:' + #p0")
-    public List<Menu> findByUser(Long currentUserId) {
+    public List<Menu> findByUser(String currentUserId) {
         List<Role> roles = roleService.findByUsersId(currentUserId);
-        Set<Long> roleIds = roles.stream().map(Role::getId).collect(Collectors.toSet());
+        Set<String> roleIds = roles.stream().map(Role::getId).collect(Collectors.toSet());
         LinkedHashSet<Menu> menus = menuMapper.findByRoleIdsAndTypeNot(roleIds, 2);
         return new ArrayList<>(menus);
     }
@@ -159,8 +159,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         }
 
         // 记录的父节点ID
-        Long oldPid = menu.getPid();
-        Long newPid = resources.getPid();
+        String oldPid = menu.getPid();
+        String newPid = resources.getPid();
 
         if (StringUtils.isNotBlank(resources.getComponentName())) {
             menu1 = menuMapper.findByComponentName(resources.getComponentName());
@@ -213,7 +213,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     }
 
     @Override
-    public List<Menu> getMenus(Long pid) {
+    public List<Menu> getMenus(String pid) {
         List<Menu> menus;
         if (pid != null && !pid.equals("0")) {
             menus = menuMapper.findByPidOrderByMenuSort(pid);
@@ -236,7 +236,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     @Override
     public List<Menu> buildTree(List<Menu> menus) {
         List<Menu> trees = new ArrayList<>();
-        Set<Long> ids = new HashSet<>();
+        Set<String> ids = new HashSet<>();
         for (Menu menu : menus) {
             if (menu.getPid() == null) {
                 trees.add(menu);
@@ -327,7 +327,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         FileUtil.downloadExcel(list, response);
     }
 
-    private void updateSubCnt(Long menuId) {
+    private void updateSubCnt(String menuId) {
         if (menuId != null) {
             int count = menuMapper.countByPid(menuId);
             menuMapper.updateSubCntById(count, menuId);
@@ -339,7 +339,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
      *
      * @param id 菜单ID
      */
-    public void delCaches(Long id) {
+    public void delCaches(String id) {
         List<User> users = userMapper.findByMenuId(id);
         redisUtils.del(CacheKey.MENU_ID + id);
         redisUtils.delByKeys(CacheKey.MENU_USER, users.stream().map(User::getId).collect(Collectors.toSet()));

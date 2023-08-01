@@ -82,7 +82,7 @@ public class AppController {
     @ApiOperation(value = "删除应用")
     @DeleteMapping
     @PreAuthorize("@el.check('app:del')")
-    public ResponseEntity<Object> deleteApp(@RequestBody Set<Long> ids) {
+    public ResponseEntity<Object> deleteApp(@RequestBody Set<String> ids) {
         appService.delete(ids);
         return new ResponseEntity<>(HttpStatus.OK);
     }

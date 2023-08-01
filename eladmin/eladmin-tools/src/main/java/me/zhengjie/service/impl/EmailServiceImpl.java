@@ -44,7 +44,7 @@ public class EmailServiceImpl extends ServiceImpl<EmailConfigMapper, EmailConfig
     @CachePut(key = "'config'")
     @Transactional(rollbackFor = Exception.class)
     public EmailConfig config(EmailConfig emailConfig, EmailConfig old) throws Exception {
-        emailConfig.setId(1L);
+        emailConfig.setId("1");
         if (!emailConfig.getPass().equals(old.getPass())) {
             // 对称加密
             emailConfig.setPass(EncryptUtils.desEncrypt(emailConfig.getPass()));
@@ -56,7 +56,7 @@ public class EmailServiceImpl extends ServiceImpl<EmailConfigMapper, EmailConfig
     @Override
     @Cacheable(key = "'config'")
     public EmailConfig find() {
-        EmailConfig emailConfig = getById(1L);
+        EmailConfig emailConfig = getById("1");
         return emailConfig == null ? new EmailConfig() : emailConfig;
     }
 

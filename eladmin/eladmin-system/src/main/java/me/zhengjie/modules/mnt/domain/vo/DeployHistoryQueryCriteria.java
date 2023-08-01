@@ -29,7 +29,7 @@ public class DeployHistoryQueryCriteria {
 
     private String blurry;
 
-    private Long deployId;
+    private String deployId;
 
     private List<Timestamp> deployDate;
 }

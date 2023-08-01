@@ -43,9 +43,9 @@ import java.util.Set;
 public class Role extends BaseEntity implements Serializable {
 
     @NotNull(groups = {Update.class})
-    @TableId(value = "role_id", type = IdType.AUTO)
+    @TableId(value = "role_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
     @TableField(exist = false)
     @ApiModelProperty(value = "用户", hidden = true)

@@ -34,7 +34,7 @@ import java.io.Serializable;
 public class AlipayConfig implements Serializable {
 
     @TableId("config_id")
-    private Long id;
+    private String id;
 
     @NotBlank
     @ApiModelProperty(value = "应用ID")

@@ -91,17 +91,17 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements De
 
     @Override
     @Cacheable(key = "'id:' + #p0")
-    public Dept findById(Long id) {
+    public Dept findById(String id) {
         return getById(id);
     }
 
     @Override
-    public List<Dept> findByPid(long pid) {
+    public List<Dept> findByPid(String pid) {
         return deptMapper.findByPid(pid);
     }
 
     @Override
-    public Set<Dept> findByRoleId(Long id) {
+    public Set<Dept> findByRoleId(String id) {
         return deptMapper.findByRoleId(id);
     }
 
@@ -119,8 +119,8 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements De
     @Transactional(rollbackFor = Exception.class)
     public void update(Dept resources) {
         // 旧的部门
-        Long oldPid = findById(resources.getId()).getPid();
-        Long newPid = resources.getPid();
+        String oldPid = findById(resources.getId()).getPid();
+        String newPid = resources.getPid();
         if (resources.getPid() != null && resources.getId().equals(resources.getPid())) {
             throw new BadRequestException("上级不能为自己");
         }
@@ -171,8 +171,8 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements De
     }
 
     @Override
-    public List<Long> getDeptChildren(List<Dept> deptList) {
-        List<Long> list = new ArrayList<>();
+    public List<String> getDeptChildren(List<Dept> deptList) {
+        List<String> list = new ArrayList<>();
         deptList.forEach(dept -> {
                     if (dept != null && dept.getEnabled()) {
                         List<Dept> depts = deptMapper.findByPid(dept.getId());
@@ -234,7 +234,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements De
 
     @Override
     public void verification(Set<Dept> depts) {
-        Set<Long> deptIds = depts.stream().map(Dept::getId).collect(Collectors.toSet());
+        Set<String> deptIds = depts.stream().map(Dept::getId).collect(Collectors.toSet());
         if (userMapper.countByDepts(deptIds) > 0) {
             throw new BadRequestException("所选部门存在用户关联，请解除后再试！");
         }
@@ -243,7 +243,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements De
         }
     }
 
-    private void updateSubCnt(Long deptId) {
+    private void updateSubCnt(String deptId) {
         if (deptId != null) {
             int count = deptMapper.countByPid(deptId);
             deptMapper.updateSubCntById(count, deptId);
@@ -272,7 +272,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements De
      *
      * @param id /
      */
-    public void delCaches(Long id) {
+    public void delCaches(String id) {
         List<User> users = userMapper.findByRoleDeptId(id);
         // 删除数据权限
         redisUtils.delByKeys(CacheKey.DATA_USER, users.stream().map(User::getId).collect(Collectors.toSet()));

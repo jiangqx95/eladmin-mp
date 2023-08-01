@@ -47,7 +47,7 @@ public interface RoleService extends IService<Role> {
      * @param id /
      * @return /
      */
-    Role findById(long id);
+    Role findById(String id);
 
     /**
      * 创建
@@ -68,7 +68,7 @@ public interface RoleService extends IService<Role> {
      *
      * @param ids /
      */
-    void delete(Set<Long> ids);
+    void delete(Set<String> ids);
 
     /**
      * 根据用户ID查询
@@ -76,7 +76,7 @@ public interface RoleService extends IService<Role> {
      * @param userId 用户ID
      * @return /
      */
-    List<Role> findByUsersId(Long userId);
+    List<Role> findByUsersId(String userId);
 
     /**
      * 根据角色查询角色级别
@@ -132,7 +132,7 @@ public interface RoleService extends IService<Role> {
      *
      * @param ids /
      */
-    void verification(Set<Long> ids);
+    void verification(Set<String> ids);
 
     /**
      * 根据菜单Id查询
@@ -140,5 +140,5 @@ public interface RoleService extends IService<Role> {
      * @param menuId /
      * @return /
      */
-    List<Role> findByMenuId(Long menuId);
+    List<Role> findByMenuId(String menuId);
 }

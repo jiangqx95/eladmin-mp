@@ -38,8 +38,8 @@ import java.io.Serializable;
 public class ColumnInfo implements Serializable {
 
     @ApiModelProperty(value = "ID", hidden = true)
-    @TableId(value = "column_id", type = IdType.AUTO)
-    private Long id;
+    @TableId(value = "column_id")
+    private String id;
 
     @ApiModelProperty(value = "表名")
     private String tableName;

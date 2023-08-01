@@ -30,15 +30,15 @@ import java.util.Set;
 @Data
 public class UserQueryCriteria implements Serializable {
 
-    private Long id;
+    private String id;
 
-    private Set<Long> deptIds = new HashSet<>();
+    private Set<String> deptIds = new HashSet<>();
 
     private String blurry;
 
     private Boolean enabled;
 
-    private Long deptId;
+    private String deptId;
 
     private List<Timestamp> createTime;
 

@@ -37,9 +37,9 @@ import java.util.Objects;
 @TableName("mnt_server")
 public class Server extends BaseEntity implements Serializable {
 
-    @TableId(value = "server_id", type = IdType.AUTO)
+    @TableId(value = "server_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
     @ApiModelProperty(value = "服务器名称")
     private String name;

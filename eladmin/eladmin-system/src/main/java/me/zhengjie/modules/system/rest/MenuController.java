@@ -69,19 +69,19 @@ public class MenuController {
     @ApiOperation("返回全部的菜单")
     @GetMapping(value = "/lazy")
     @PreAuthorize("@el.check('menu:list','roles:list')")
-    public ResponseEntity<List<Menu>> queryAllMenu(@RequestParam Long pid) {
+    public ResponseEntity<List<Menu>> queryAllMenu(@RequestParam String pid) {
         return new ResponseEntity<>(menuService.getMenus(pid), HttpStatus.OK);
     }
 
     @ApiOperation("根据菜单ID返回所有子节点ID，包含自身ID")
     @GetMapping(value = "/child")
     @PreAuthorize("@el.check('menu:list','roles:list')")
-    public ResponseEntity<Object> childMenu(@RequestParam Long id) {
+    public ResponseEntity<Object> childMenu(@RequestParam String id) {
         Set<Menu> menuSet = new HashSet<>();
         List<Menu> menuList = menuService.getMenus(id);
         menuSet.add(menuService.getById(id));
         menuSet = menuService.getChildMenus(menuList, menuSet);
-        Set<Long> ids = menuSet.stream().map(Menu::getId).collect(Collectors.toSet());
+        Set<String> ids = menuSet.stream().map(Menu::getId).collect(Collectors.toSet());
         return new ResponseEntity<>(ids, HttpStatus.OK);
     }
 
@@ -96,10 +96,10 @@ public class MenuController {
     @ApiOperation("查询菜单:根据ID获取同级与上级数据")
     @PostMapping("/superior")
     @PreAuthorize("@el.check('menu:list')")
-    public ResponseEntity<List<Menu>> getMenuSuperior(@RequestBody List<Long> ids) {
+    public ResponseEntity<List<Menu>> getMenuSuperior(@RequestBody List<String> ids) {
         Set<Menu> menus = new LinkedHashSet<>();
         if (CollectionUtil.isNotEmpty(ids)) {
-            for (Long id : ids) {
+            for (String id : ids) {
                 Menu menu = menuService.findById(id);
                 List<Menu> menuList = menuService.getSuperior(menu, new ArrayList<>());
                 for (Menu data : menuList) {
@@ -141,9 +141,9 @@ public class MenuController {
     @ApiOperation("删除菜单")
     @DeleteMapping
     @PreAuthorize("@el.check('menu:del')")
-    public ResponseEntity<Object> deleteMenu(@RequestBody Set<Long> ids) {
+    public ResponseEntity<Object> deleteMenu(@RequestBody Set<String> ids) {
         Set<Menu> menuSet = new HashSet<>();
-        for (Long id : ids) {
+        for (String id : ids) {
             List<Menu> menuList = menuService.getMenus(id);
             menuSet.add(menuService.getById(id));
             menuSet = menuService.getChildMenus(menuList, menuSet);

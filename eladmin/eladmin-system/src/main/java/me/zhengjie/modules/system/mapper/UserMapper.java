@@ -49,17 +49,17 @@ public interface UserMapper extends BaseMapper<User> {
     @Select("update sys_user set email = #{email} where username = #{username}")
     void updateEmail(@Param("username") String username, @Param("email") String email);
 
-    List<User> findByRoleId(@Param("roleId") Long roleId);
+    List<User> findByRoleId(@Param("roleId") String roleId);
 
-    List<User> findByRoleDeptId(@Param("deptId") Long deptId);
+    List<User> findByRoleDeptId(@Param("deptId") String deptId);
 
-    List<User> findByMenuId(@Param("menuId") Long menuId);
+    List<User> findByMenuId(@Param("menuId") String menuId);
 
-    int countByJobs(@Param("jobIds") Set<Long> jobIds);
+    int countByJobs(@Param("jobIds") Set<String> jobIds);
 
-    int countByDepts(@Param("deptIds") Set<Long> deptIds);
+    int countByDepts(@Param("deptIds") Set<String> deptIds);
 
-    int countByRoles(@Param("roleIds") Set<Long> roleIds);
+    int countByRoles(@Param("roleIds") Set<String> roleIds);
 
-    void resetPwd(@Param("userIds") Set<Long> userIds, @Param("pwd") String pwd);
+    void resetPwd(@Param("userIds") Set<String> userIds, @Param("pwd") String pwd);
 }

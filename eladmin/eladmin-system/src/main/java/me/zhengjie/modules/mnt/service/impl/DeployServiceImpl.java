@@ -102,14 +102,14 @@ public class DeployServiceImpl extends ServiceImpl<DeployMapper, Deploy> impleme
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Set<Long> ids) {
+    public void delete(Set<String> ids) {
         removeBatchByIds(ids);
         // 删除关联
         deployServerMapper.deleteByDeployIds(ids);
     }
 
     @Override
-    public void deploy(String fileSavePath, Long id) {
+    public void deploy(String fileSavePath, String id) {
         deployApp(fileSavePath, id);
     }
 
@@ -117,7 +117,7 @@ public class DeployServiceImpl extends ServiceImpl<DeployMapper, Deploy> impleme
      * @param fileSavePath 本机路径
      * @param id           ID
      */
-    private void deployApp(String fileSavePath, Long id) {
+    private void deployApp(String fileSavePath, String id) {
         Deploy deploy = deployMapper.getDeployById(id);
         if (deploy == null) {
             sendMsg("部署信息不存在", MsgType.ERROR);
@@ -190,7 +190,7 @@ public class DeployServiceImpl extends ServiceImpl<DeployMapper, Deploy> impleme
         }
     }
 
-    private void backupApp(ExecuteShellUtil executeShellUtil, String ip, String fileSavePath, String appName, String backupPath, Long id) {
+    private void backupApp(ExecuteShellUtil executeShellUtil, String ip, String fileSavePath, String appName, String backupPath, String id) {
         String deployDate = DateUtil.format(new Date(), DatePattern.PURE_DATETIME_PATTERN);
         StringBuilder sb = new StringBuilder();
         backupPath += appName + FILE_SEPARATOR + deployDate + "\n";
@@ -339,7 +339,7 @@ public class DeployServiceImpl extends ServiceImpl<DeployMapper, Deploy> impleme
 
     @Override
     public String serverReduction(DeployHistory resources) {
-        Long deployId = resources.getDeployId();
+        String deployId = resources.getDeployId();
         Deploy deployInfo = getById(deployId);
         String deployDate = DateUtil.format(resources.getDeployDate(), DatePattern.PURE_DATETIME_PATTERN);
         App app = deployInfo.getApp();

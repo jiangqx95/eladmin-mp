@@ -82,7 +82,7 @@ public class ServerController {
     @ApiOperation(value = "删除Server")
     @DeleteMapping
     @PreAuthorize("@el.check('serverDeploy:del')")
-    public ResponseEntity<Object> deleteServerDeploy(@RequestBody Set<Long> ids) {
+    public ResponseEntity<Object> deleteServerDeploy(@RequestBody Set<String> ids) {
         serverService.delete(ids);
         return new ResponseEntity<>(HttpStatus.OK);
     }

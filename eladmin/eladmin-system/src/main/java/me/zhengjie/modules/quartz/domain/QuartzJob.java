@@ -39,9 +39,9 @@ public class QuartzJob extends BaseEntity implements Serializable {
 
     public static final String JOB_KEY = "JOB_KEY";
 
-    @TableId(value = "job_id", type = IdType.AUTO)
+    @TableId(value = "job_id")
     @NotNull(groups = {Update.class})
-    private Long id;
+    private String id;
 
     @TableField(exist = false)
     @ApiModelProperty(value = "用于子任务唯一标识", hidden = true)

@@ -43,8 +43,8 @@ public class GenConfig implements Serializable {
     }
 
     @ApiModelProperty(value = "ID", hidden = true)
-    @TableId(value = "config_id", type = IdType.AUTO)
-    private Long id;
+    @TableId(value = "config_id")
+    private String id;
 
     @NotBlank
     @ApiModelProperty(value = "表名")

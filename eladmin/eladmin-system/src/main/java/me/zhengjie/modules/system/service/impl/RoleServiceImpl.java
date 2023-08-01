@@ -80,7 +80,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 
     @Override
     @Cacheable(key = "'id:' + #p0")
-    public Role findById(long id) {
+    public Role findById(String id) {
         return roleMapper.findById(id);
     }
 
@@ -137,8 +137,8 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Set<Long> ids) {
-        for (Long id : ids) {
+    public void delete(Set<String> ids) {
+        for (String id : ids) {
             // 更新相关缓存
             delCaches(id, null);
         }
@@ -149,7 +149,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     }
 
     @Override
-    public List<Role> findByUsersId(Long userId) {
+    public List<Role> findByUsersId(String userId) {
         return roleMapper.findByUserId(userId);
     }
 
@@ -198,14 +198,14 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     }
 
     @Override
-    public void verification(Set<Long> ids) {
+    public void verification(Set<String> ids) {
         if (userMapper.countByRoles(ids) > 0) {
             throw new BadRequestException("所选角色存在用户关联，请解除关联再试！");
         }
     }
 
     @Override
-    public List<Role> findByMenuId(Long menuId) {
+    public List<Role> findByMenuId(String menuId) {
         return roleMapper.findByMenuId(menuId);
     }
 
@@ -214,11 +214,11 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
      *
      * @param id /
      */
-    public void delCaches(Long id, List<User> users) {
+    public void delCaches(String id, List<User> users) {
         users = CollectionUtil.isEmpty(users) ? userMapper.findByRoleId(id) : users;
         if (CollectionUtil.isNotEmpty(users)) {
             users.forEach(item -> userCacheManager.cleanUserCache(item.getUsername()));
-            Set<Long> userIds = users.stream().map(User::getId).collect(Collectors.toSet());
+            Set<String> userIds = users.stream().map(User::getId).collect(Collectors.toSet());
             redisUtils.delByKeys(CacheKey.DATA_USER, userIds);
             redisUtils.delByKeys(CacheKey.MENU_USER, userIds);
             redisUtils.delByKeys(CacheKey.ROLE_AUTH, userIds);

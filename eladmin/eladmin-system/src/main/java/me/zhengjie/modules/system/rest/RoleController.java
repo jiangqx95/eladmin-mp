@@ -57,7 +57,7 @@ public class RoleController {
     @ApiOperation("获取单个role")
     @GetMapping(value = "/{id}")
     @PreAuthorize("@el.check('roles:list')")
-    public ResponseEntity<Role> findRoleById(@PathVariable Long id) {
+    public ResponseEntity<Role> findRoleById(@PathVariable String id) {
         return new ResponseEntity<>(roleService.findById(id), HttpStatus.OK);
     }
 
@@ -126,8 +126,8 @@ public class RoleController {
     @ApiOperation("删除角色")
     @DeleteMapping
     @PreAuthorize("@el.check('roles:del')")
-    public ResponseEntity<Object> deleteRole(@RequestBody Set<Long> ids) {
-        for (Long id : ids) {
+    public ResponseEntity<Object> deleteRole(@RequestBody Set<String> ids) {
+        for (String id : ids) {
             Role role = roleService.getById(id);
             getLevels(role.getLevel());
         }

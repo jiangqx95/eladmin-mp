@@ -42,9 +42,9 @@ import java.util.Set;
 public class Dept extends BaseEntity implements Serializable {
 
     @NotNull(groups = Update.class)
-    @TableId(value = "dept_id", type = IdType.AUTO)
+    @TableId(value = "dept_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
     @TableField(exist = false)
     @JSONField(serialize = false)
@@ -66,7 +66,7 @@ public class Dept extends BaseEntity implements Serializable {
     private Boolean enabled;
 
     @ApiModelProperty(value = "上级部门")
-    private Long pid;
+    private String pid;
 
     @ApiModelProperty(value = "子节点数目", hidden = true)
     private Integer subCount = 0;

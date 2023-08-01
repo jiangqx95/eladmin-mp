@@ -39,7 +39,7 @@ public interface SysLogMapper extends BaseMapper<SysLog> {
 
     IPage<SysLog> queryAllByUser(@Param("criteria") SysLogQueryCriteria criteria, Page<SysLog> page);
 
-    String getExceptionDetails(@Param("id") Long id);
+    String getExceptionDetails(@Param("id") String id);
 
     void deleteByLevel(@Param("logType") String logType);
 }

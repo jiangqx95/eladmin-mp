@@ -87,7 +87,7 @@ public class JobController {
     @ApiOperation("删除岗位")
     @DeleteMapping
     @PreAuthorize("@el.check('job:del')")
-    public ResponseEntity<Object> deleteJob(@RequestBody Set<Long> ids) {
+    public ResponseEntity<Object> deleteJob(@RequestBody Set<String> ids) {
         // 验证是否被用户关联
         jobService.verification(ids);
         jobService.delete(ids);

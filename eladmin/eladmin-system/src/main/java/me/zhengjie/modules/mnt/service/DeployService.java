@@ -70,7 +70,7 @@ public interface DeployService extends IService<Deploy> {
      *
      * @param ids /
      */
-    void delete(Set<Long> ids);
+    void delete(Set<String> ids);
 
     /**
      * 部署文件到服务器
@@ -78,7 +78,7 @@ public interface DeployService extends IService<Deploy> {
      * @param fileSavePath 文件路径
      * @param appId        应用ID
      */
-    void deploy(String fileSavePath, Long appId);
+    void deploy(String fileSavePath, String appId);
 
     /**
      * 查询部署状态

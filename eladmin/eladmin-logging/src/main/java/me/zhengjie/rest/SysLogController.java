@@ -90,7 +90,7 @@ public class SysLogController {
     @GetMapping(value = "/error/{id}")
     @ApiOperation("日志异常详情查询")
     @PreAuthorize("@el.check()")
-    public ResponseEntity<Object> queryErrorLogDetail(@PathVariable Long id) {
+    public ResponseEntity<Object> queryErrorLogDetail(@PathVariable String id) {
         return new ResponseEntity<>(sysLogService.findByErrDetail(id), HttpStatus.OK);
     }
 
