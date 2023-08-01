@@ -23,13 +23,14 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
-* @author Zheng Jie
-* @date 2019-04-10
-*/
+ * @author Zheng Jie
+ * @date 2019-04-10
+ */
 @Getter
 @Setter
 @TableName("sys_dict_detail")

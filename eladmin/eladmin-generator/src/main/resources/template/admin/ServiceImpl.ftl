@@ -20,7 +20,7 @@ import ${package}.domain.${className};
     <#list columns as column>
         <#if column.columnKey = 'UNI'>
             <#if column_index = 1>
-import me.zhengjie.exception.EntityExistException;
+                import me.zhengjie.exception.EntityExistException;
             </#if>
         </#if>
     </#list>
@@ -50,56 +50,63 @@ import me.zhengjie.utils.PageResult;
 **/
 @Service
 @RequiredArgsConstructor
-public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${className}> implements ${className}Service {
+public class ${className}ServiceImpl extends ServiceImpl
+<${className}Mapper, ${className}> implements ${className}Service {
 
-    private final ${className}Mapper ${changeClassName}Mapper;
+private final ${className}Mapper ${changeClassName}Mapper;
 
-    @Override
-    public PageResult<${className}> queryAll(${className}QueryCriteria criteria, Page<Object> page){
-        return PageUtil.toPage(${changeClassName}Mapper.findAll(criteria, page));
+@Override
+public PageResult<${className}> queryAll(${className}QueryCriteria criteria, Page
+<Object> page){
+    return PageUtil.toPage(${changeClassName}Mapper.findAll(criteria, page));
     }
 
     @Override
     public List<${className}> queryAll(${className}QueryCriteria criteria){
-        return ${changeClassName}Mapper.findAll(criteria);
+    return ${changeClassName}Mapper.findAll(criteria);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(${className} resources) {
-        save(resources);
+    save(resources);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void update(${className} resources) {
-        ${className} ${changeClassName} = getById(resources.get${pkCapitalColName}());
-        ${changeClassName}.copy(resources);
-        saveOrUpdate(${changeClassName});
+    ${className} ${changeClassName} = getById(resources.get${pkCapitalColName}());
+    ${changeClassName}.copy(resources);
+    saveOrUpdate(${changeClassName});
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteAll(List<${pkColumnType}> ids) {
-        removeBatchByIds(ids);
+    removeBatchByIds(ids);
     }
 
     @Override
     public void download(List<${className}> all, HttpServletResponse response) throws IOException {
-        List<Map<String, Object>> list = new ArrayList<>();
-        for (${className} ${changeClassName} : all) {
-            Map<String,Object> map = new LinkedHashMap<>();
-        <#list columns as column>
-            <#if column.columnKey != 'PRI'>
+    List
+    <Map
+    <String
+    , Object>> list = new ArrayList<>();
+    for (${className} ${changeClassName} : all) {
+    Map
+    <String
+    ,Object> map = new LinkedHashMap<>();
+    <#list columns as column>
+        <#if column.columnKey != 'PRI'>
             <#if column.remark != ''>
-            map.put("${column.remark}", ${changeClassName}.get${column.capitalColumnName}());
+                map.put("${column.remark}", ${changeClassName}.get${column.capitalColumnName}());
             <#else>
-            map.put(" ${column.changeColumnName}",  ${changeClassName}.get${column.capitalColumnName}());
+                map.put(" ${column.changeColumnName}",  ${changeClassName}.get${column.capitalColumnName}());
             </#if>
-            </#if>
-        </#list>
-            list.add(map);
-        }
-        FileUtil.downloadExcel(list, response);
+        </#if>
+    </#list>
+    list.add(map);
     }
-}
+    FileUtil.downloadExcel(list, response);
+    }
+    }

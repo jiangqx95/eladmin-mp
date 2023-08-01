@@ -25,6 +25,7 @@ import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -153,7 +154,7 @@ public class FileUtil extends cn.hutool.core.io.FileUtil {
     /**
      * inputStream 转 File
      */
-    static File inputStreamToFile(InputStream ins, String name){
+    static File inputStreamToFile(InputStream ins, String name) {
         File file = new File(SYS_TEM_DIR + name);
         if (file.exists()) {
             return file;
@@ -215,7 +216,7 @@ public class FileUtil extends cn.hutool.core.io.FileUtil {
         BigExcelWriter writer = ExcelUtil.getBigWriter(file);
         // 一次性写出内容，使用默认样式，强制输出标题
         writer.write(list, true);
-        SXSSFSheet sheet = (SXSSFSheet)writer.getSheet();
+        SXSSFSheet sheet = (SXSSFSheet) writer.getSheet();
         //上面需要强转SXSSFSheet  不然没有trackAllColumnsForAutoSizing方法
         sheet.trackAllColumnsForAutoSizing();
         //列宽自适应
@@ -264,7 +265,7 @@ public class FileUtil extends cn.hutool.core.io.FileUtil {
     public static boolean check(File file1, File file2) {
         String img1Md5 = getMd5(file1);
         String img2Md5 = getMd5(file2);
-        if(img1Md5 != null){
+        if (img1Md5 != null) {
             return img1Md5.equals(img2Md5);
         }
         return false;
@@ -353,6 +354,7 @@ public class FileUtil extends cn.hutool.core.io.FileUtil {
 
     /**
      * 验证并过滤非法的文件名
+     *
      * @param fileName 文件名
      * @return 文件名
      */

@@ -15,22 +15,23 @@
  */
 package me.zhengjie.modules.mnt.domain;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.bean.copier.CopyOptions;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
-* @author zhanghouying
-* @date 2019-08-24
-*/
+ * @author zhanghouying
+ * @date 2019-08-24
+ */
 @Getter
 @Setter
 @TableName("mnt_server")
@@ -55,8 +56,8 @@ public class Server extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "密码")
     private String password;
 
-    public void copy(Server source){
-        BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
+    public void copy(Server source) {
+        BeanUtil.copyProperties(source, this, CopyOptions.create().setIgnoreNullValue(true));
     }
 
     @Override

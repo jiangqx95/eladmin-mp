@@ -26,6 +26,7 @@ public interface GenConfigService extends IService<GenConfig> {
 
     /**
      * 查询表配置
+     *
      * @param tableName 表名
      * @return 表配置
      */
@@ -33,6 +34,7 @@ public interface GenConfigService extends IService<GenConfig> {
 
     /**
      * 更新表配置
+     *
      * @param tableName 表名
      * @param genConfig 表配置
      * @return 表配置

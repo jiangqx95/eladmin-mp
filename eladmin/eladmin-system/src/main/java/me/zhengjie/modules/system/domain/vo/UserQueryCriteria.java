@@ -16,6 +16,7 @@
 package me.zhengjie.modules.system.domain.vo;
 
 import lombok.Data;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashSet;

@@ -20,6 +20,7 @@ import com.wf.captcha.base.Captcha;
 import lombok.Data;
 import me.zhengjie.exception.BadConfigurationException;
 import me.zhengjie.utils.StringUtils;
+
 import java.awt.*;
 import java.util.Objects;
 
@@ -94,7 +95,7 @@ public class LoginProperties {
             default:
                 throw new BadConfigurationException("验证码配置信息错误！正确配置查看 LoginCodeEnum ");
         }
-        if(StringUtils.isNotBlank(loginCode.getFontName())){
+        if (StringUtils.isNotBlank(loginCode.getFontName())) {
             captcha.setFont(new Font(loginCode.getFontName(), Font.PLAIN, loginCode.getFontSize()));
         }
         return captcha;

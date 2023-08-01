@@ -20,12 +20,13 @@ import me.zhengjie.modules.system.domain.Dict;
 import me.zhengjie.modules.system.domain.vo.DictQueryCriteria;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
-* @author Zheng Jie
-* @date 2023-06-19
-*/
+ * @author Zheng Jie
+ * @date 2023-06-19
+ */
 @Mapper
 public interface DictMapper extends BaseMapper<Dict> {
 

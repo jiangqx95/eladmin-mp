@@ -11,7 +11,8 @@
     </insert>
 
     <delete id="deleteByRoleId">
-        delete from sys_roles_depts
+        delete
+        from sys_roles_depts
         where role_id = #{roleId}
     </delete>
 

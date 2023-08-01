@@ -20,6 +20,7 @@ import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import me.zhengjie.utils.SecurityUtils;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
+
 import java.sql.Timestamp;
 
 /**
@@ -37,7 +38,10 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         this.strictInsertFill(metaObject, "updateTime", Timestamp.class, DateTime.now().toTimestamp());
         /* 操作人 */
         String username = "System";
-        try {username = SecurityUtils.getCurrentUsername();}catch (Exception ignored){}
+        try {
+            username = SecurityUtils.getCurrentUsername();
+        } catch (Exception ignored) {
+        }
         this.strictInsertFill(metaObject, "createBy", String.class, username);
         this.strictInsertFill(metaObject, "updateBy", String.class, username);
     }
@@ -48,7 +52,10 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         this.strictUpdateFill(metaObject, "updateTime", Timestamp.class, DateTime.now().toTimestamp());
         /* 操作人 */
         String username = "System";
-        try {username = SecurityUtils.getCurrentUsername();}catch (Exception ignored){}
+        try {
+            username = SecurityUtils.getCurrentUsername();
+        } catch (Exception ignored) {
+        }
         this.strictUpdateFill(metaObject, "updateBy", String.class, username);
     }
 }

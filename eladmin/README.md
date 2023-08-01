@@ -1,6 +1,7 @@
 <h1 style="text-align: center">ELADMIN 后台管理系统</h1>
 
 #### 项目简介
+
 一个基于 Spring Boot 2.6.4 、 Mybatis-Plus、 JWT、Spring Security、Redis、Vue的前后端分离的后台管理系统
 
 **开发文档：**  [https://eladmin.vip](https://eladmin.vip)
@@ -11,20 +12,21 @@
 
 #### 项目源码
 
-|     | 后端源码                                 |   前端源码  |
-|---  |--------------------------------------| --- |
-|  github   | https://github.com/elunez/eladmin-mp |  https://github.com/elunez/eladmin-web-mp   |
-|  码云   | https://gitee.com/elunez/eladmin-mp     |  https://gitee.com/elunez/eladmin-web-mp   |
+|        | 后端源码                                 | 前端源码                                     |
+|--------|--------------------------------------|------------------------------------------|
+| github | https://github.com/elunez/eladmin-mp | https://github.com/elunez/eladmin-web-mp |
+| 码云     | https://gitee.com/elunez/eladmin-mp  | https://gitee.com/elunez/eladmin-web-mp  |
 
 #### VPS推荐
+
 <a href="https://bwh81.net/aff.php?aff=70876" target="_blank">
 <img src="https://eladmin.vip/images/banner/side.jpeg" style="width: 435px;border-radius: 2px;">
 </a>
 
 使用优惠码: `BWHNCXNVXV`，可获得 6.81% 的折扣， [查看介绍](https://eladmin.vip/pages/040101/)
 
-
 #### 主要特性
+
 - 使用最新技术栈，社区资源丰富。
 - 高效率开发，代码生成器可一键生成前后端代码
 - 支持数据字典，可方便地对一些状态进行管理
@@ -36,7 +38,8 @@
 - 支持在线用户管理与服务器性能监控，支持限制单用户登录
 - 支持运维管理，可方便地对远程服务器的应用进行部署与管理
 
-####  系统功能
+#### 系统功能
+
 - 用户管理：提供用户的相关配置，新增用户后，默认密码为123456
 - 角色管理：对权限与菜单进行分配，可根据部门设置角色的数据权限
 - 菜单管理：已实现菜单动态路由，后端可配置化，支持多级菜单
@@ -54,6 +57,7 @@
 - 运维管理：一键部署你的应用
 
 #### 项目结构
+
 项目采用按功能分模块的开发方式，结构如下
 
 - `eladmin-common` 为系统的公共模块，各种工具类，公共配置存在该模块
@@ -96,7 +100,9 @@
 - 感谢 [j.yao.SUSE](https://github.com/everhopingandwaiting) 大佬提供的匿名接口与Redis限流等功能
 
 #### 项目捐赠
+
 项目的发展离不开你的支持，请作者喝杯咖啡吧☕  [Donate](https://eladmin.vip/pages/030101/)
 
 #### 反馈交流
+
 - QQ交流群：891137268 、947578238、659622532

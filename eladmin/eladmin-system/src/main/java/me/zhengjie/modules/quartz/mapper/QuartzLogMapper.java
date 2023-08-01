@@ -22,6 +22,7 @@ import me.zhengjie.modules.quartz.domain.QuartzLog;
 import me.zhengjie.modules.quartz.domain.vo.QuartzJobQueryCriteria;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**

@@ -21,6 +21,7 @@ import me.zhengjie.modules.system.domain.User;
 import me.zhengjie.modules.system.domain.vo.UserQueryCriteria;
 import me.zhengjie.utils.PageResult;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
@@ -43,12 +44,14 @@ public interface UserService extends IService<User> {
 
     /**
      * 新增用户
+     *
      * @param resources /
      */
     void create(User resources);
 
     /**
      * 编辑用户
+     *
      * @param resources /
      * @throws Exception /
      */
@@ -56,6 +59,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 删除用户
+     *
      * @param ids /
      */
     void delete(Set<String> ids);
@@ -70,6 +74,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 根据用户名查询
+     *
      * @param userName /
      * @return /
      */
@@ -77,13 +82,15 @@ public interface UserService extends IService<User> {
 
     /**
      * 修改密码
-     * @param username 用户名
+     *
+     * @param username        用户名
      * @param encryptPassword 密码
      */
     void updatePass(String username, String encryptPassword);
 
     /**
      * 修改头像
+     *
      * @param file 文件
      * @return /
      */
@@ -91,8 +98,9 @@ public interface UserService extends IService<User> {
 
     /**
      * 修改邮箱
+     *
      * @param username 用户名
-     * @param email 邮箱
+     * @param email    邮箱
      */
     void updateEmail(String username, String email);
 
@@ -115,6 +123,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 导出数据
+     *
      * @param queryAll 待导出的数据
      * @param response /
      * @throws IOException /
@@ -123,12 +132,14 @@ public interface UserService extends IService<User> {
 
     /**
      * 用户自助修改资料
+     *
      * @param resources /
      */
     void updateCenter(User resources);
 
     /**
      * 重置密码
+     *
      * @param ids 用户id
      * @param pwd 密码
      */

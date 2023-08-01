@@ -18,19 +18,25 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        d.dict_id, d.name, d.description, d.create_by, d.update_by, d.create_time, d.update_time
+        d
+        .
+        dict_id
+        , d.name, d.description, d.create_by, d.update_by, d.create_time, d.update_time
     </sql>
 
     <sql id="Dict_Details_Column_List">
-        dd.detail_id as dd_id, dd.label, dd.value, dd.create_time as dd_create_time
+        dd
+        .
+        detail_id
+        as dd_id, dd.label, dd.`value`, dd.create_time as dd_create_time
     </sql>
 
     <sql id="Where_sql">
         <where>
             <if test="criteria.blurry != null and criteria.blurry != ''">
                 and (
-                    d.name like concat('%', #{criteria.blurry}, '%')
-                    or d.description like concat('%', #{criteria.blurry}, '%')
+                d.name like concat('%', #{criteria.blurry}, '%')
+                or d.description like concat('%', #{criteria.blurry}, '%')
                 )
             </if>
         </where>
@@ -40,12 +46,13 @@
         SELECT d.*,
         <include refid="Dict_Details_Column_List"/>
         from (
-            select <include refid="Base_Column_List"/>
-            from sys_dict d
-            <include refid="Where_sql"/>
-            <if test="criteria.offset != null">
-                limit #{criteria.offset}, #{criteria.size}
-            </if>
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict d
+        <include refid="Where_sql"/>
+        <if test="criteria.offset != null">
+            limit #{criteria.offset}, #{criteria.size}
+        </if>
         ) d
         left join sys_dict_detail dd on d.dict_id = dd.dict_id
         order by d.dict_id desc

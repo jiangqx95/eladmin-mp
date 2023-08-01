@@ -23,6 +23,7 @@ import me.zhengjie.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.Resource;
 
 /**
@@ -40,6 +41,7 @@ public class UserCacheManager {
 
     /**
      * 返回用户缓存
+     *
      * @param userName 用户名
      * @return JwtUserDto
      */
@@ -47,15 +49,16 @@ public class UserCacheManager {
         if (StringUtils.isNotEmpty(userName)) {
             // 获取数据
             Object obj = redisUtils.get(LoginProperties.cacheKey + userName);
-            if(obj != null){
-                return (JwtUserDto)obj;
+            if (obj != null) {
+                return (JwtUserDto) obj;
             }
         }
         return null;
     }
 
     /**
-     *  添加缓存到Redis
+     * 添加缓存到Redis
+     *
      * @param userName 用户名
      */
     @Async
@@ -70,6 +73,7 @@ public class UserCacheManager {
     /**
      * 清理用户缓存信息
      * 用户信息变更时
+     *
      * @param userName 用户名
      */
     @Async
