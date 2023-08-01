@@ -11,7 +11,8 @@
     </insert>
 
     <delete id="deleteByDeployId">
-        delete from mnt_deploy_server
+        delete
+        from mnt_deploy_server
         where deploy_id = #{deployId}
     </delete>
 

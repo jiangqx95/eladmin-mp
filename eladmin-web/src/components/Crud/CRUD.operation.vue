@@ -63,8 +63,8 @@
       />
       <el-button
         size="mini"
-        icon.stop="el-icon-refresh"
-        @click="crud.refresh()"
+        icon="el-icon-refresh"
+        @click.stop="crud.refresh()"
       />
       <el-popover
         placement="bottom-end"

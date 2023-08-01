@@ -43,6 +43,7 @@ public interface DatabaseService extends IService<Database> {
 
     /**
      * 查询全部
+     *
      * @param criteria 条件
      * @return /
      */
@@ -50,31 +51,36 @@ public interface DatabaseService extends IService<Database> {
 
     /**
      * 创建
+     *
      * @param resources /
      */
     void create(Database resources);
 
     /**
      * 编辑
+     *
      * @param resources /
      */
     void update(Database resources);
 
     /**
      * 删除
+     *
      * @param ids /
      */
     void delete(Set<String> ids);
 
-	/**
-	 * 测试连接数据库
-	 * @param resources /
-	 * @return /
-	 */
-	boolean testConnection(Database resources);
+    /**
+     * 测试连接数据库
+     *
+     * @param resources /
+     * @return /
+     */
+    boolean testConnection(Database resources);
 
     /**
      * 导出数据
+     *
      * @param queryAll /
      * @param response /
      * @throws IOException e

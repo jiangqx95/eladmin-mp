@@ -22,22 +22,23 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
-* @author Zheng Jie
-* @date 2019-03-29
-*/
+ * @author Zheng Jie
+ * @date 2019-03-29
+ */
 @Getter
 @Setter
 @TableName("sys_job")
 public class Job extends BaseEntity implements Serializable {
 
     @NotNull(groups = Update.class)
-    @TableId(value="job_id")
+    @TableId(value = "job_id")
     @ApiModelProperty(value = "ID", hidden = true)
     private String id;
 
@@ -47,7 +48,7 @@ public class Job extends BaseEntity implements Serializable {
 
     @NotNull
     @ApiModelProperty(value = "岗位排序")
-    private Long jobSort;
+    private String jobSort;
 
     @NotNull
     @ApiModelProperty(value = "是否启用")

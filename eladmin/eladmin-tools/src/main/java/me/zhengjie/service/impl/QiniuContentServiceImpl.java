@@ -29,22 +29,26 @@ import com.qiniu.util.Auth;
 import lombok.RequiredArgsConstructor;
 import me.zhengjie.domain.QiniuConfig;
 import me.zhengjie.domain.QiniuContent;
-import me.zhengjie.mapper.QiniuContentMapper;
 import me.zhengjie.domain.vo.QiniuQueryCriteria;
-import me.zhengjie.utils.PageResult;
-import me.zhengjie.utils.QiNiuUtil;
 import me.zhengjie.exception.BadRequestException;
+import me.zhengjie.mapper.QiniuContentMapper;
 import me.zhengjie.service.QiniuContentService;
 import me.zhengjie.utils.FileUtil;
+import me.zhengjie.utils.PageResult;
 import me.zhengjie.utils.PageUtil;
+import me.zhengjie.utils.QiNiuUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Zheng Jie
@@ -61,7 +65,7 @@ public class QiniuContentServiceImpl extends ServiceImpl<QiniuContentMapper, Qin
     private Long maxSize;
 
     @Override
-    public PageResult<QiniuContent> queryAll(QiniuQueryCriteria criteria, Page<Object> page){
+    public PageResult<QiniuContent> queryAll(QiniuQueryCriteria criteria, Page<Object> page) {
         return PageUtil.toPage(qiniuContentMapper.findAll(criteria, page));
     }
 
@@ -74,7 +78,7 @@ public class QiniuContentServiceImpl extends ServiceImpl<QiniuContentMapper, Qin
     @Transactional(rollbackFor = Exception.class)
     public QiniuContent upload(MultipartFile file, QiniuConfig qiniuConfig) {
         FileUtil.checkSize(maxSize, file.getSize());
-        if(qiniuConfig.getId() == null){
+        if (qiniuConfig.getId() == null) {
             throw new BadRequestException("请先添加相应配置，再操作");
         }
         // 构造一个带指定Zone对象的配置类
@@ -84,14 +88,14 @@ public class QiniuContentServiceImpl extends ServiceImpl<QiniuContentMapper, Qin
         String upToken = auth.uploadToken(qiniuConfig.getBucket());
         try {
             String key = file.getOriginalFilename();
-            if(qiniuContentMapper.findByKey(key) != null) {
+            if (qiniuContentMapper.findByKey(key) != null) {
                 key = QiNiuUtil.getKey(key);
             }
             Response response = uploadManager.put(file.getBytes(), key, upToken);
             //解析上传成功的结果
             DefaultPutRet putRet = JSON.parseObject(response.bodyString(), DefaultPutRet.class);
             QiniuContent content = qiniuContentMapper.findByKey(FileUtil.getFileNameNoEx(putRet.key));
-            if(content == null){
+            if (content == null) {
                 //存入数据库
                 QiniuContent qiniuContent = new QiniuContent();
                 qiniuContent.setSuffix(FileUtil.getExtensionName(putRet.key));
@@ -104,16 +108,16 @@ public class QiniuContentServiceImpl extends ServiceImpl<QiniuContentMapper, Qin
             }
             return content;
         } catch (Exception e) {
-           throw new BadRequestException(e.getMessage());
+            throw new BadRequestException(e.getMessage());
         }
     }
 
     @Override
-    public String download(QiniuContent content,QiniuConfig config){
+    public String download(QiniuContent content, QiniuConfig config) {
         String finalUrl;
         String type = "公开";
-        if(type.equals(content.getType())){
-            finalUrl  = content.getUrl();
+        if (type.equals(content.getType())) {
+            finalUrl = content.getUrl();
         } else {
             Auth auth = Auth.create(config.getAccessKey(), config.getSecretKey());
             // 1小时，可以自定义链接过期时间
@@ -142,7 +146,7 @@ public class QiniuContentServiceImpl extends ServiceImpl<QiniuContentMapper, Qin
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void synchronize(QiniuConfig config) {
-        if(config.getId() == null){
+        if (config.getId() == null) {
             throw new BadRequestException("请先添加相应配置，再操作");
         }
         //构造一个带指定Zone对象的配置类
@@ -162,14 +166,14 @@ public class QiniuContentServiceImpl extends ServiceImpl<QiniuContentMapper, Qin
             QiniuContent qiniuContent;
             FileInfo[] items = fileListIterator.next();
             for (FileInfo item : items) {
-                if(qiniuContentMapper.findByKey(FileUtil.getFileNameNoEx(item.key)) == null){
+                if (qiniuContentMapper.findByKey(FileUtil.getFileNameNoEx(item.key)) == null) {
                     qiniuContent = new QiniuContent();
                     qiniuContent.setSize(FileUtil.getSize(Integer.parseInt(String.valueOf(item.fsize))));
                     qiniuContent.setSuffix(FileUtil.getExtensionName(item.key));
                     qiniuContent.setKey(FileUtil.getFileNameNoEx(item.key));
                     qiniuContent.setType(config.getType());
                     qiniuContent.setBucket(config.getBucket());
-                    qiniuContent.setUrl(config.getHost()+"/"+item.key);
+                    qiniuContent.setUrl(config.getHost() + "/" + item.key);
                     save(qiniuContent);
                 }
             }
@@ -188,7 +192,7 @@ public class QiniuContentServiceImpl extends ServiceImpl<QiniuContentMapper, Qin
     public void downloadList(List<QiniuContent> queryAll, HttpServletResponse response) throws IOException {
         List<Map<String, Object>> list = new ArrayList<>();
         for (QiniuContent content : queryAll) {
-            Map<String,Object> map = new LinkedHashMap<>();
+            Map<String, Object> map = new LinkedHashMap<>();
             map.put("文件名", content.getKey());
             map.put("文件类型", content.getSuffix());
             map.put("空间名称", content.getBucket());

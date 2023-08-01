@@ -20,24 +20,25 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import me.zhengjie.exception.BadRequestException;
 import me.zhengjie.modules.mnt.domain.App;
+import me.zhengjie.modules.mnt.domain.vo.AppQueryCriteria;
 import me.zhengjie.modules.mnt.mapper.AppMapper;
 import me.zhengjie.modules.mnt.mapper.DeployMapper;
 import me.zhengjie.modules.mnt.mapper.DeployServerMapper;
 import me.zhengjie.modules.mnt.service.AppService;
-import me.zhengjie.modules.mnt.domain.vo.AppQueryCriteria;
 import me.zhengjie.utils.FileUtil;
 import me.zhengjie.utils.PageResult;
 import me.zhengjie.utils.PageUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
 /**
-* @author zhanghouying
-* @date 2019-08-24
-*/
+ * @author zhanghouying
+ * @date 2019-08-24
+ */
 @Service
 @RequiredArgsConstructor
 public class AppServiceImpl extends ServiceImpl<AppMapper, App> implements AppService {
@@ -47,12 +48,12 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App> implements AppSe
     private final DeployServerMapper deployServerMapper;
 
     @Override
-    public PageResult<App> queryAll(AppQueryCriteria criteria, Page<Object> page){
+    public PageResult<App> queryAll(AppQueryCriteria criteria, Page<Object> page) {
         return PageUtil.toPage(appMapper.queryAll(criteria, page));
     }
 
     @Override
-    public List<App> queryAll(AppQueryCriteria criteria){
+    public List<App> queryAll(AppQueryCriteria criteria) {
         return appMapper.queryAll(criteria);
     }
 
@@ -72,7 +73,7 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App> implements AppSe
         saveOrUpdate(app);
     }
 
-    private void verification(App resources){
+    private void verification(App resources) {
         String opt = "/opt";
         String home = "/home";
         if (!(resources.getUploadPath().startsWith(opt) || resources.getUploadPath().startsWith(home))) {
@@ -93,7 +94,7 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App> implements AppSe
         removeBatchByIds(ids);
         // 删除部署
         Set<String> deployIds = deployMapper.getIdByAppIds(ids);
-        if(deployIds != null && deployIds.size() > 0){
+        if (deployIds != null && deployIds.size() > 0) {
             deployServerMapper.deleteByDeployIds(deployIds);
             deployMapper.deleteBatchIds(deployIds);
         }
@@ -103,7 +104,7 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App> implements AppSe
     public void download(List<App> apps, HttpServletResponse response) throws IOException {
         List<Map<String, Object>> list = new ArrayList<>();
         for (App app : apps) {
-            Map<String,Object> map = new LinkedHashMap<>();
+            Map<String, Object> map = new LinkedHashMap<>();
             map.put("应用名称", app.getName());
             map.put("端口", app.getPort());
             map.put("上传目录", app.getUploadPath());

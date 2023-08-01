@@ -11,7 +11,8 @@
     </insert>
 
     <delete id="deleteByUserId">
-        delete from sys_users_roles
+        delete
+        from sys_users_roles
         where user_id = #{userId}
     </delete>
 

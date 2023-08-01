@@ -22,6 +22,7 @@ import me.zhengjie.domain.QiniuContent;
 import me.zhengjie.domain.vo.QiniuQueryCriteria;
 import me.zhengjie.utils.PageResult;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
@@ -43,6 +44,7 @@ public interface QiniuContentService extends IService<QiniuContent> {
 
     /**
      * 查询全部
+     *
      * @param criteria 条件
      * @return /
      */
@@ -50,7 +52,8 @@ public interface QiniuContentService extends IService<QiniuContent> {
 
     /**
      * 上传文件
-     * @param file 文件
+     *
+     * @param file        文件
      * @param qiniuConfig 配置
      * @return QiniuContent
      */
@@ -58,34 +61,39 @@ public interface QiniuContentService extends IService<QiniuContent> {
 
     /**
      * 下载文件
+     *
      * @param content 文件信息
-     * @param config 配置
+     * @param config  配置
      * @return String
      */
     String download(QiniuContent content, QiniuConfig config);
 
     /**
      * 删除文件
+     *
      * @param content 文件
-     * @param config 配置
+     * @param config  配置
      */
     void delete(QiniuContent content, QiniuConfig config);
 
     /**
      * 同步数据
+     *
      * @param config 配置
      */
     void synchronize(QiniuConfig config);
 
     /**
      * 删除文件
-     * @param ids 文件ID数组
+     *
+     * @param ids    文件ID数组
      * @param config 配置
      */
     void deleteAll(String[] ids, QiniuConfig config);
 
     /**
      * 导出数据
+     *
      * @param queryAll /
      * @param response /
      * @throws IOException /

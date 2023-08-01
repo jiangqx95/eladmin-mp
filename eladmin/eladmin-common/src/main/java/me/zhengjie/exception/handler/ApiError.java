@@ -32,13 +32,13 @@ class ApiError {
         timestamp = System.currentTimeMillis();
     }
 
-    public static ApiError error(String message){
+    public static ApiError error(String message) {
         ApiError apiError = new ApiError();
         apiError.setMessage(message);
         return apiError;
     }
 
-    public static ApiError error(Integer status, String message){
+    public static ApiError error(Integer status, String message) {
         ApiError apiError = new ApiError();
         apiError.setStatus(status);
         apiError.setMessage(message);

@@ -18,15 +18,20 @@ package me.zhengjie.utils;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.template.*;
 import lombok.extern.slf4j.Slf4j;
-import me.zhengjie.domain.GenConfig;
 import me.zhengjie.domain.ColumnInfo;
+import me.zhengjie.domain.GenConfig;
 import org.springframework.util.ObjectUtils;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static me.zhengjie.utils.FileUtil.SYS_TEM_DIR;
 
 /**
@@ -279,7 +284,7 @@ public class GenUtil {
             // 主键存在字典
             if (StringUtils.isNotBlank(column.getDictName())) {
                 genMap.put("hasDict", true);
-                if(!dicts.contains(column.getDictName()))
+                if (!dicts.contains(column.getDictName()))
                     dicts.add(column.getDictName());
             }
 

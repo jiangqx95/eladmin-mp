@@ -16,19 +16,20 @@
 package me.zhengjie.modules.mnt.domain.vo;
 
 import lombok.Data;
+
 import java.sql.Timestamp;
 import java.util.List;
 
 /**
-* @author zhanghouying
-* @date 2019-08-24
-*/
+ * @author zhanghouying
+ * @date 2019-08-24
+ */
 @Data
-public class DeployHistoryQueryCriteria{
+public class DeployHistoryQueryCriteria {
 
-	private String blurry;
+    private String blurry;
 
-	private String deployId;
+    private String deployId;
 
-	private List<Timestamp> deployDate;
+    private List<Timestamp> deployDate;
 }

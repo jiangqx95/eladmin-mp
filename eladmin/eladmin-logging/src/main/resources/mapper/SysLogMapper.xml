@@ -3,15 +3,18 @@
 <mapper namespace="me.zhengjie.mapper.SysLogMapper">
 
     <sql id="info_column">
-        log_id id,description,method,params,request_ip,time,username,address,browser,exception_detail,create_time
+        log_id
+        id,description,method,params,request_ip,time,username,address,browser,exception_detail,create_time
     </sql>
 
     <sql id="error_column">
-        log_id id,description,method,params,request_ip,username,address,browser,exception_detail,create_time
+        log_id
+        id,description,method,params,request_ip,username,address,browser,exception_detail,create_time
     </sql>
 
     <sql id="user_column">
-        log_id id,description,request_ip,time,address,browser,create_time
+        log_id
+        id,description,request_ip,time,address,browser,create_time
     </sql>
 
     <sql id="query">
@@ -60,10 +63,14 @@
     </select>
 
     <delete id="deleteByLevel">
-        delete from sys_log where log_type = #{logType}
+        delete
+        from sys_log
+        where log_type = #{logType}
     </delete>
 
     <select id="getExceptionDetails" resultType="java.lang.String">
-        select exception_detail from sys_log where log_id = #{id}
+        select exception_detail
+        from sys_log
+        where log_id = #{id}
     </select>
 </mapper>

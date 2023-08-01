@@ -15,7 +15,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        config_id, table_name, api_alias, pack, module_name, path, api_path, author, prefix, cover
+        config_id
+        , table_name, api_alias, pack, module_name, path, api_path, author, prefix, cover
     </sql>
 
     <select id="findByTableName" resultMap="BaseResultMap">

@@ -22,10 +22,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.io.Serializable;
 
 /**
  * 列的数据信息
+ *
  * @author Zheng Jie
  * @date 2019-01-02
  */

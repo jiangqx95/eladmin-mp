@@ -20,23 +20,24 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import me.zhengjie.modules.mnt.domain.DeployHistory;
+import me.zhengjie.modules.mnt.domain.vo.DeployHistoryQueryCriteria;
 import me.zhengjie.modules.mnt.mapper.DeployHistoryMapper;
 import me.zhengjie.modules.mnt.service.DeployHistoryService;
-import me.zhengjie.modules.mnt.domain.vo.DeployHistoryQueryCriteria;
 import me.zhengjie.utils.DateUtil;
 import me.zhengjie.utils.FileUtil;
 import me.zhengjie.utils.PageResult;
 import me.zhengjie.utils.PageUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
 /**
-* @author zhanghouying
-* @date 2019-08-24
-*/
+ * @author zhanghouying
+ * @date 2019-08-24
+ */
 @Service
 @RequiredArgsConstructor
 public class DeployHistoryServiceImpl extends ServiceImpl<DeployHistoryMapper, DeployHistory> implements DeployHistoryService {
@@ -44,12 +45,12 @@ public class DeployHistoryServiceImpl extends ServiceImpl<DeployHistoryMapper, D
     private final DeployHistoryMapper deployhistoryMapper;
 
     @Override
-    public PageResult<DeployHistory> queryAll(DeployHistoryQueryCriteria criteria, Page<Object> page){
+    public PageResult<DeployHistory> queryAll(DeployHistoryQueryCriteria criteria, Page<Object> page) {
         return PageUtil.toPage(deployhistoryMapper.findAll(criteria, page));
     }
 
     @Override
-    public List<DeployHistory> queryAll(DeployHistoryQueryCriteria criteria){
+    public List<DeployHistory> queryAll(DeployHistoryQueryCriteria criteria) {
         return deployhistoryMapper.findAll(criteria);
     }
 
@@ -71,7 +72,7 @@ public class DeployHistoryServiceImpl extends ServiceImpl<DeployHistoryMapper, D
     public void download(List<DeployHistory> deployHistories, HttpServletResponse response) throws IOException {
         List<Map<String, Object>> list = new ArrayList<>();
         for (DeployHistory deployHistory : deployHistories) {
-            Map<String,Object> map = new LinkedHashMap<>();
+            Map<String, Object> map = new LinkedHashMap<>();
             map.put("部署编号", deployHistory.getDeployId());
             map.put("应用名称", deployHistory.getAppName());
             map.put("部署IP", deployHistory.getIp());

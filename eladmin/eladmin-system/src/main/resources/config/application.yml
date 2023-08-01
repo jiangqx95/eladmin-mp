@@ -20,8 +20,8 @@ spring:
     redis:
       repositories:
         enabled: false
-#  pid:
-#    file: /自行指定位置/eladmin.pid
+  #  pid:
+  #    file: /自行指定位置/eladmin.pid
 
   redis:
     #数据库索引
