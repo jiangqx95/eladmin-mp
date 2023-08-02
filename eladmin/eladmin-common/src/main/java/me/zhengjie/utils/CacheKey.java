@@ -55,8 +55,4 @@ public interface CacheKey {
      * 数据字典
      */
     String DICT_NAME = "dict::name:";
-    /**
-     * 数据字典详情
-     */
-    String DICT_DETAIL = "dict::detail:";
 }
