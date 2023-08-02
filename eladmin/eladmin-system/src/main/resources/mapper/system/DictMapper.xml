@@ -22,7 +22,7 @@
     </sql>
 
     <sql id="Dict_Details_Column_List">
-        dd.detail_id as dd_id, dd.label, dd.`value`, dd.create_time as dd_create_time
+        dd.detail_id as dd_id, dd.label, dd.value, dd.create_time as dd_create_time
     </sql>
 
     <sql id="Where_sql">
