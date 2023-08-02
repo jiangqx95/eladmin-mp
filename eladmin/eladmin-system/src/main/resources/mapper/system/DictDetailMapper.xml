@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="me.zhengjie.modules.system.mapper.DictDetailMapper">
     <resultMap id="BaseResultMap" type="me.zhengjie.modules.system.domain.DictDetail">
-        <id column="detail_id" property="id" jdbcType="BIGINT"/>
+        <id column="detail_id" property="id" jdbcType="VARCHAR"/>
         <result column="label" property="label" jdbcType="VARCHAR"/>
         <result column="value" property="value" jdbcType="VARCHAR"/>
         <result column="dict_sort" property="dictSort" jdbcType="INTEGER"/>
@@ -11,7 +11,7 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <association property="dict" javaType="me.zhengjie.modules.system.domain.Dict">
-            <id column="dict_id" property="id" jdbcType="BIGINT"/>
+            <id column="dict_id" property="id" jdbcType="VARCHAR"/>
             <result column="name" property="name" jdbcType="VARCHAR"/>
         </association>
     </resultMap>

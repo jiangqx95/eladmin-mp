@@ -113,11 +113,11 @@ file:
     path: ~/file/
     avatar: ~/avatar/
   linux:
-    path: /home/eladmin/file/
-    avatar: /home/eladmin/avatar/
+    path: upload/file/
+    avatar: upload/avatar/
   windows:
-    path: C:\eladmin\file\
-    avatar: C:\eladmin\avatar\
+    path: upload\file\
+    avatar: upload\avatar\
   # 文件大小限制 /M
   maxSize: 100
   avatarMaxSize: 5
