@@ -25,6 +25,7 @@ import me.zhengjie.modules.system.domain.DictDetail;
 import me.zhengjie.modules.system.domain.vo.DictDetailQueryCriteria;
 import me.zhengjie.modules.system.service.DictDetailService;
 import me.zhengjie.utils.PageResult;
+import me.zhengjie.utils.PageUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -51,7 +52,7 @@ public class DictDetailController {
     @ApiOperation("查询字典详情")
     @GetMapping
     public ResponseEntity<PageResult<DictDetail>> queryDictDetail(DictDetailQueryCriteria criteria, Page<Object> page) {
-        return new ResponseEntity<>(dictDetailService.queryAll(criteria, page), HttpStatus.OK);
+        return new ResponseEntity<>(PageUtil.toPage(dictDetailService.queryAll(criteria.getDictName(), criteria, page)), HttpStatus.OK);
     }
 
     @ApiOperation("查询多个字典详情")

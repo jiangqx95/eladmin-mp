@@ -49,8 +49,9 @@ public class DictDetailServiceImpl extends ServiceImpl<DictDetailMapper, DictDet
     private final RedisUtils redisUtils;
 
     @Override
-    public PageResult<DictDetail> queryAll(DictDetailQueryCriteria criteria, Page<Object> page) {
-        return PageUtil.toPage(dictDetailMapper.findAll(criteria, page));
+    @Cacheable(key = "'name:' + #p0")
+    public List<DictDetail> queryAll(String name, DictDetailQueryCriteria criteria, Page<Object> page) {
+        return dictDetailMapper.findAll(criteria, page).getRecords();
     }
 
     @Override
@@ -88,7 +89,7 @@ public class DictDetailServiceImpl extends ServiceImpl<DictDetailMapper, DictDet
     }
 
     public void delCaches(DictDetail dictDetail) {
-        Dict dict = dictMapper.selectById(dictDetail.getDict().getId());
+        Dict dict = dictMapper.selectById(dictDetail.getDict() == null ? dictDetail.getDictId() : dictDetail.getDict().getId());
         redisUtils.del(CacheKey.DICT_NAME + dict.getName());
     }
 }
