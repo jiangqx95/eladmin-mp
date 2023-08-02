@@ -52,7 +52,7 @@
         r.role_id as role_id, r.name as role_name, r.level as role_level, r.data_scope as role_data_scope
     </sql>
 
-    <sql id="Whrer_Sql">
+    <sql id="Where_Sql">
         <where>
             <if test="criteria.id != null">
                 and u.user_id = #{criteria.id}
@@ -91,7 +91,7 @@
         <include refid="Base_Column_List"/>
         from sys_user u
         left join sys_dept d on u.dept_id = d.dept_id
-        <include refid="Whrer_Sql"/>
+        <include refid="Where_Sql"/>
         <if test="criteria.offset != null">
             limit #{criteria.offset}, #{criteria.size}
         </if>
@@ -106,7 +106,7 @@
     <select id="countAll" resultType="java.lang.Long">
         select count(*)
         from sys_user u
-        <include refid="Whrer_Sql"/>
+        <include refid="Where_Sql"/>
     </select>
 
     <select id="findByUsername" resultMap="BaseResultMap">
