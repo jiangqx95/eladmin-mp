@@ -57,7 +57,7 @@ public interface DictDetailService extends IService<DictDetail> {
      * @param page     分页参数
      * @return /
      */
-    PageResult<DictDetail> queryAll(DictDetailQueryCriteria criteria, Page<Object> page);
+    List<DictDetail> queryAll(String name, DictDetailQueryCriteria criteria, Page<Object> page);
 
     /**
      * 根据字典名称获取字典详情

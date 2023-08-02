@@ -25,8 +25,11 @@ import me.zhengjie.modules.system.domain.vo.DictQueryCriteria;
 import me.zhengjie.modules.system.mapper.DictDetailMapper;
 import me.zhengjie.modules.system.mapper.DictMapper;
 import me.zhengjie.modules.system.service.DictService;
-import me.zhengjie.utils.*;
+import me.zhengjie.utils.CacheKey;
+import me.zhengjie.utils.FileUtil;
+import me.zhengjie.utils.RedisUtils;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,11 +51,10 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
     private final DictDetailMapper deleteDetail;
 
     @Override
-    public PageResult<Dict> queryAll(DictQueryCriteria criteria, Page<Object> page) {
+    @Cacheable(key = "'name:' + #p0")
+    public List<Dict> queryAll(String name, DictQueryCriteria criteria, Page<Object> page) {
         criteria.setOffset(page.offset());
-        List<Dict> dicts = dictMapper.findAll(criteria);
-        Long total = dictMapper.countAll(criteria);
-        return PageUtil.toPage(dicts, total);
+        return dictMapper.findAll(criteria);
     }
 
     @Override
@@ -63,6 +65,8 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(Dict resources) {
+        // 删除字典列表缓存
+        redisUtils.del(CacheKey.DICT_NAME + "all");
         save(resources);
     }
 
@@ -119,6 +123,11 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
     }
 
     public void delCaches(Dict dict) {
+        // 字典列表数据缓存
+        redisUtils.del(CacheKey.DICT_NAME + "all");
+        // 字典缓存
         redisUtils.del(CacheKey.DICT_NAME + dict.getName());
+        // 字典详情缓存
+        redisUtils.del(CacheKey.DICT_DETAIL + dict.getName());
     }
 }

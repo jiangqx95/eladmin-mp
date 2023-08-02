@@ -25,6 +25,8 @@ import me.zhengjie.modules.system.domain.Dict;
 import me.zhengjie.modules.system.domain.vo.DictQueryCriteria;
 import me.zhengjie.modules.system.service.DictService;
 import me.zhengjie.utils.PageResult;
+import me.zhengjie.utils.PageUtil;
+import me.zhengjie.utils.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -67,7 +69,7 @@ public class DictController {
     @GetMapping
     @PreAuthorize("@el.check('dict:list')")
     public ResponseEntity<PageResult<Dict>> queryDict(DictQueryCriteria resources, Page<Object> page) {
-        return new ResponseEntity<>(dictService.queryAll(resources, page), HttpStatus.OK);
+        return new ResponseEntity<>(PageUtil.toPage(dictService.queryAll(StringUtils.isBlank(resources.getBlurry()) ? "all" : resources.getBlurry(), resources, page)), HttpStatus.OK);
     }
 
     @Log("新增字典")
