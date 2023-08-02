@@ -49,7 +49,7 @@
     </sql>
 
     <sql id="Role_Column_List">
-        r.role_id as role_id, r.name as role_name, r.level as role_level, r.data_scope as role_data_scope
+        r.role_id as role_id, r.name as role_name, r."LEVEL" as role_level, r.data_scope as role_data_scope
     </sql>
 
     <sql id="Where_Sql">
@@ -93,7 +93,7 @@
         left join sys_dept d on u.dept_id = d.dept_id
         <include refid="Where_Sql"/>
         <if test="criteria.offset != null">
-            limit #{criteria.offset}, #{criteria.size}
+            where rownum between #{criteria.offset} and #{criteria.offset}+#{criteria.size}
         </if>
         ) u
         left join sys_users_jobs suj on u.user_user_id = suj.user_id

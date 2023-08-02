@@ -24,7 +24,7 @@
 
     <sql id="Base_Column_List">
         role.role_id as role_role_id, role.name as role_name, role.data_scope as role_data_scope,
-        role.level as role_level, role.description as role_description, role.create_by as role_create_by,
+        role."LEVEL" as role_level, role.description as role_description, role.create_by as role_create_by,
         role.update_by as role_update_by, role.create_time as role_create_time, role.update_time as role_update_time
     </sql>
 
@@ -51,9 +51,9 @@
     </sql>
 
     <select id="queryAll" resultType="me.zhengjie.modules.system.domain.Role">
-        select role_id as id, name, level
+        select role_id as id, name, "LEVEL"
         from sys_role
-        order by level
+        order by "LEVEL"
     </select>
 
     <select id="findAll" resultMap="BaseResultMap">
@@ -66,7 +66,7 @@
         from sys_role role
         <include refid="Where_sql"/>
         <if test="criteria.offset != null">
-            limit #{criteria.offset}, #{criteria.size}
+            where rownum between #{criteria.offset} and #{criteria.offset}+#{criteria.size}
         </if>
         ) role
         left join sys_roles_menus srm on role.role_role_id = srm.role_id

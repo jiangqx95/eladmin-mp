@@ -63,7 +63,7 @@
         left join mnt_app app on deploy.app_id = app.app_id
         <include refid="Where_sql"/>
         <if test="criteria.offset != null">
-            limit #{criteria.offset}, #{criteria.size}
+            where rownum between #{criteria.offset} and #{criteria.offset}+#{criteria.size}
         </if>
         ) t
         left join mnt_deploy_server mds on t.d_deploy_id = mds.deploy_id

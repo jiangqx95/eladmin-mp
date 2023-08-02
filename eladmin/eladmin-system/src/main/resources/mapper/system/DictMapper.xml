@@ -22,7 +22,7 @@
     </sql>
 
     <sql id="Dict_Details_Column_List">
-        dd.detail_id as dd_id, dd.label, dd.`value`, dd.create_time as dd_create_time
+        dd.detail_id as dd_id, dd.label, dd.value, dd.create_time as dd_create_time
     </sql>
 
     <sql id="Where_sql">
@@ -45,7 +45,7 @@
         from sys_dict d
         <include refid="Where_sql"/>
         <if test="criteria.offset != null">
-            limit #{criteria.offset}, #{criteria.size}
+            where rownum between #{criteria.offset} and #{criteria.offset}+#{criteria.size}
         </if>
         ) d
         left join sys_dict_detail dd on d.dict_id = dd.dict_id
