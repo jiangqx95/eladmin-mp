@@ -36,32 +36,23 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        u
-        .
-        user_id
-        as user_user_id, u.dept_id as user_dept_id, u.username as user_username,
-           u.nick_name as user_nick_name, u.email as user_email, u.phone as user_phone,
-           u.gender as user_gender, u.avatar_name as user_avatar_name, u.avatar_path as user_avatar_path,
-           u.enabled as user_enabled, u.pwd_reset_time as user_pwd_reset_time, u.create_by as user_create_by,
-           u.update_by as user_update_by, u.create_time as user_create_time, u.update_time as user_update_time,
-           d.dept_id as dept_id, d.name as dept_name
+       u.user_id as user_user_id, u.dept_id as user_dept_id, u.username as user_username,
+       u.nick_name as user_nick_name, u.email as user_email, u.phone as user_phone,
+       u.gender as user_gender, u.avatar_name as user_avatar_name, u.avatar_path as user_avatar_path,
+       u.enabled as user_enabled, u.pwd_reset_time as user_pwd_reset_time, u.create_by as user_create_by,
+       u.update_by as user_update_by, u.create_time as user_create_time, u.update_time as user_update_time,
+       d.dept_id as dept_id, d.name as dept_name
     </sql>
 
     <sql id="Job_Column_List">
-        j
-        .
-        job_id
-        as job_id, j.name as job_name
+        j.job_id as job_id, j.name as job_name
     </sql>
 
     <sql id="Role_Column_List">
-        r
-        .
-        role_id
-        as role_id, r.name as role_name, r.level as role_level, r.data_scope as role_data_scope
+        r.role_id as role_id, r.name as role_name, r.level as role_level, r.data_scope as role_data_scope
     </sql>
 
-    <sql id="Whrer_Sql">
+    <sql id="Where_Sql">
         <where>
             <if test="criteria.id != null">
                 and u.user_id = #{criteria.id}
@@ -100,7 +91,7 @@
         <include refid="Base_Column_List"/>
         from sys_user u
         left join sys_dept d on u.dept_id = d.dept_id
-        <include refid="Whrer_Sql"/>
+        <include refid="Where_Sql"/>
         <if test="criteria.offset != null">
             limit #{criteria.offset}, #{criteria.size}
         </if>
@@ -115,7 +106,7 @@
     <select id="countAll" resultType="java.lang.Long">
         select count(*)
         from sys_user u
-        <include refid="Whrer_Sql"/>
+        <include refid="Where_Sql"/>
     </select>
 
     <select id="findByUsername" resultMap="BaseResultMap">

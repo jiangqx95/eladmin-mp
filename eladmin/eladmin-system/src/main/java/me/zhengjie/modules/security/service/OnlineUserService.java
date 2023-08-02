@@ -89,8 +89,7 @@ public class OnlineUserService {
      * @return /
      */
     public List<OnlineUserDto> getAll(String username) {
-        String loginKey = properties.getOnlineKey() +
-                (StringUtils.isBlank(username) ? "" : "*" + username);
+        String loginKey = properties.getOnlineKey() + (StringUtils.isBlank(username) ? "" : "*" + username);
         List<String> keys = redisUtils.scan(loginKey + "*");
         Collections.reverse(keys);
         List<OnlineUserDto> onlineUserDtos = new ArrayList<>();

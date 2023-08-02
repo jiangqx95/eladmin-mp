@@ -23,26 +23,17 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        role
-        .
-        role_id
-        as role_role_id, role.name as role_name, role.data_scope as role_data_scope,
+        role.role_id as role_role_id, role.name as role_name, role.data_scope as role_data_scope,
         role.level as role_level, role.description as role_description, role.create_by as role_create_by,
         role.update_by as role_update_by, role.create_time as role_create_time, role.update_time as role_update_time
     </sql>
 
     <sql id="Menu_Column_List">
-        menu
-        .
-        menu_id
-        as menu_id, menu.title as menu_title, menu.permission as menu_permission
+        menu.menu_id as menu_id, menu.title as menu_title, menu.permission as menu_permission
     </sql>
 
     <sql id="Dept_Column_List">
-        dept
-        .
-        dept_id
-        as dept_id, dept.name as dept_name
+        dept.dept_id as dept_id, dept.name as dept_name
     </sql>
 
     <sql id="Where_sql">
