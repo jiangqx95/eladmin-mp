@@ -17,7 +17,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        dd.detail_id, dd.label, dd.`value`, dd.`dict_sort`, dd.create_by, dd.update_by, dd.create_time, dd.update_time, d.dict_id, d.name
+        dd.detail_id, dd.label, dd.value, dd.dict_sort, dd.create_by, dd.update_by, dd.create_time, dd.update_time, d.dict_id, d.name
     </sql>
 
     <select id="findAll" resultMap="BaseResultMap">
