@@ -65,6 +65,8 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(Dict resources) {
+        // 删除字典列表缓存
+        redisUtils.del(CacheKey.DICT_NAME + "all");
         save(resources);
     }
 
