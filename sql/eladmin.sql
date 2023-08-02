@@ -37,7 +37,7 @@ CREATE TABLE `code_column_config`  (
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '数据库字段描述',
   PRIMARY KEY (`column_id`) USING BTREE,
   INDEX `idx_table_name`(`table_name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 191 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成字段信息存储' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成字段信息存储' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of code_column_config
@@ -60,7 +60,7 @@ CREATE TABLE `code_gen_config`  (
   `api_alias` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '接口名称',
   PRIMARY KEY (`config_id`) USING BTREE,
   INDEX `idx_table_name`(`table_name`(100)) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成器配置' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成器配置' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of code_gen_config
@@ -180,7 +180,7 @@ CREATE TABLE `mnt_server`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`server_id`) USING BTREE,
   INDEX `idx_ip`(`ip`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '服务器管理' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '服务器管理' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of mnt_server
@@ -204,7 +204,7 @@ CREATE TABLE `sys_dept`  (
   PRIMARY KEY (`dept_id`) USING BTREE,
   INDEX `inx_pid`(`pid`) USING BTREE,
   INDEX `inx_enabled`(`enabled`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '部门' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '部门表' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of sys_dept
@@ -230,7 +230,7 @@ CREATE TABLE `sys_dict`  (
   `create_time` datetime NOT NULL COMMENT '创建日期',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`dict_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据字典' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据字典' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of sys_dict
@@ -255,17 +255,17 @@ CREATE TABLE `sys_dict_detail`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`detail_id`) USING BTREE,
   INDEX `FK5tpkputc6d9nboxojdbgnpmyb`(`dict_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据字典详情' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据字典详情' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of sys_dict_detail
 -- ----------------------------
-INSERT INTO `sys_dict_detail` VALUES ('1', 1, '激活', 'true', 1, 'admin', NULL, '2019-10-27 20:31:36', NULL);
-INSERT INTO `sys_dict_detail` VALUES ('2', 1, '禁用', 'false', 2, 'admin', NULL, '2019-10-27 20:31:36', NULL);
-INSERT INTO `sys_dict_detail` VALUES ('3', 4, '启用', 'true', 1, 'admin', NULL, '2019-10-27 20:31:36', NULL);
-INSERT INTO `sys_dict_detail` VALUES ('4', 4, '停用', 'false', 2, 'admin', NULL, '2019-10-27 20:31:36', NULL);
-INSERT INTO `sys_dict_detail` VALUES ('5', 5, '启用', 'true', 1, 'admin', NULL, '2019-10-27 20:31:36', NULL);
-INSERT INTO `sys_dict_detail` VALUES ('6', 5, '停用', 'false', 2, 'admin', NULL, '2019-10-27 20:31:36', NULL);
+INSERT INTO `sys_dict_detail` VALUES ('1', '1', '激活', 'true', 1, 'admin', NULL, '2019-10-27 20:31:36', NULL);
+INSERT INTO `sys_dict_detail` VALUES ('2', '1', '禁用', 'false', 2, 'admin', NULL, '2019-10-27 20:31:36', NULL);
+INSERT INTO `sys_dict_detail` VALUES ('3', '4', '启用', 'true', 1, 'admin', NULL, '2019-10-27 20:31:36', NULL);
+INSERT INTO `sys_dict_detail` VALUES ('4', '4', '停用', 'false', 2, 'admin', NULL, '2019-10-27 20:31:36', NULL);
+INSERT INTO `sys_dict_detail` VALUES ('5', '5', '启用', 'true', 1, 'admin', NULL, '2019-10-27 20:31:36', NULL);
+INSERT INTO `sys_dict_detail` VALUES ('6', '5', '停用', 'false', 2, 'admin', NULL, '2019-10-27 20:31:36', NULL);
 
 -- ----------------------------
 -- Table structure for sys_job
@@ -283,7 +283,7 @@ CREATE TABLE `sys_job`  (
   PRIMARY KEY (`job_id`) USING BTREE,
   UNIQUE INDEX `uniq_name`(`name`) USING BTREE,
   INDEX `inx_enabled`(`enabled`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '岗位' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '岗位表' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of sys_job
@@ -313,7 +313,7 @@ CREATE TABLE `sys_log`  (
   PRIMARY KEY (`log_id`) USING BTREE,
   INDEX `log_create_time_index`(`create_time`) USING BTREE,
   INDEX `inx_log_type`(`log_type`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3537 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统日志' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统日志' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of sys_log
@@ -346,7 +346,7 @@ CREATE TABLE `sys_menu`  (
   UNIQUE INDEX `uniq_title`(`title`) USING BTREE,
   UNIQUE INDEX `uniq_name`(`name`) USING BTREE,
   INDEX `inx_pid`(`pid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 118 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统菜单' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统菜单' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -451,7 +451,7 @@ CREATE TABLE `sys_quartz_job`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`job_id`) USING BTREE,
   INDEX `inx_is_pause`(`is_pause`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of sys_quartz_job
@@ -477,7 +477,7 @@ CREATE TABLE `sys_quartz_log`  (
   `params` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '参数',
   `time` bigint NULL DEFAULT NULL COMMENT '执行耗时',
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 151 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务日志' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务日志' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of sys_quartz_log
@@ -500,7 +500,7 @@ CREATE TABLE `sys_role`  (
   PRIMARY KEY (`role_id`) USING BTREE,
   UNIQUE INDEX `uniq_name`(`name`) USING BTREE,
   INDEX `role_name_index`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色表' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色表' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of sys_role
@@ -668,7 +668,7 @@ CREATE TABLE `sys_user`  (
   UNIQUE INDEX `uniq_email`(`email`) USING BTREE,
   INDEX `FK5rwmryny6jthaaxkogownknqp`(`dept_id`) USING BTREE,
   INDEX `inx_enabled`(`enabled`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统用户' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统用户' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of sys_user
@@ -684,7 +684,7 @@ CREATE TABLE `sys_users_jobs`  (
   `user_id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户ID',
   `job_id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '岗位ID',
   PRIMARY KEY (`user_id`, `job_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户岗位关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_users_jobs
@@ -768,7 +768,7 @@ CREATE TABLE `tool_local_storage`  (
   `create_time` datetime NOT NULL COMMENT '创建日期',
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`storage_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '本地存储' ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '本地存储' ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tool_local_storage
