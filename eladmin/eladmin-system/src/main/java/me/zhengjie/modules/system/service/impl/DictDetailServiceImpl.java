@@ -25,8 +25,6 @@ import me.zhengjie.modules.system.mapper.DictDetailMapper;
 import me.zhengjie.modules.system.mapper.DictMapper;
 import me.zhengjie.modules.system.service.DictDetailService;
 import me.zhengjie.utils.CacheKey;
-import me.zhengjie.utils.PageResult;
-import me.zhengjie.utils.PageUtil;
 import me.zhengjie.utils.RedisUtils;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -49,7 +47,7 @@ public class DictDetailServiceImpl extends ServiceImpl<DictDetailMapper, DictDet
     private final RedisUtils redisUtils;
 
     @Override
-    @Cacheable(key = "'name:' + #p0")
+    @Cacheable(key = "'detail:' + #p0")
     public List<DictDetail> queryAll(String name, DictDetailQueryCriteria criteria, Page<Object> page) {
         return dictDetailMapper.findAll(criteria, page).getRecords();
     }
@@ -74,7 +72,7 @@ public class DictDetailServiceImpl extends ServiceImpl<DictDetailMapper, DictDet
     }
 
     @Override
-    @Cacheable(key = "'name:' + #p0")
+    @Cacheable(key = "'detail:' + #p0")
     public List<DictDetail> getDictByName(String name) {
         return dictDetailMapper.findByDictName(name);
     }
@@ -89,7 +87,9 @@ public class DictDetailServiceImpl extends ServiceImpl<DictDetailMapper, DictDet
     }
 
     public void delCaches(DictDetail dictDetail) {
+        // 查出字典详情数据
         Dict dict = dictMapper.selectById(dictDetail.getDict() == null ? dictDetail.getDictId() : dictDetail.getDict().getId());
-        redisUtils.del(CacheKey.DICT_NAME + dict.getName());
+        // 根据字典名称删除字典详情缓存
+        redisUtils.del(CacheKey.DICT_DETAIL + dict.getName());
     }
 }

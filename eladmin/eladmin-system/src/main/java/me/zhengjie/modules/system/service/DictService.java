@@ -19,7 +19,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import me.zhengjie.modules.system.domain.Dict;
 import me.zhengjie.modules.system.domain.vo.DictQueryCriteria;
-import me.zhengjie.utils.PageResult;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -39,7 +38,7 @@ public interface DictService extends IService<Dict> {
      * @param page     分页参数
      * @return /
      */
-    PageResult<Dict> queryAll(DictQueryCriteria criteria, Page<Object> page);
+    List<Dict> queryAll(String name, DictQueryCriteria criteria, Page<Object> page);
 
     /**
      * 查询全部数据
