@@ -67,9 +67,10 @@ public class DictDetailServiceImpl extends ServiceImpl<DictDetailMapper, DictDet
     public void update(DictDetail resources) {
         DictDetail dictDetail = getById(resources.getId());
         resources.setId(dictDetail.getId());
+        // 更新数据
         saveOrUpdate(resources);
         // 清理缓存
-        delCaches(resources);
+        delCaches(dictDetail);
     }
 
     @Override
@@ -88,7 +89,7 @@ public class DictDetailServiceImpl extends ServiceImpl<DictDetailMapper, DictDet
     }
 
     public void delCaches(DictDetail dictDetail) {
-        Dict dict = dictMapper.selectById(dictDetail.getDict().getId());
+        Dict dict = dictMapper.selectById(dictDetail.getDictId());
         redisUtils.del(CacheKey.DICT_NAME + dict.getName());
     }
 }
