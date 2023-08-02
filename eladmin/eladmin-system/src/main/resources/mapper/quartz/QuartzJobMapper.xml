@@ -3,7 +3,7 @@
 <mapper namespace="me.zhengjie.modules.quartz.mapper.QuartzJobMapper">
 
     <resultMap id="BaseResultMap" type="me.zhengjie.modules.quartz.domain.QuartzJob">
-        <id column="job_id" property="id" jdbcType="BIGINT"/>
+        <id column="job_id" property="id" jdbcType="VARCHAR"/>
         <result column="job_name" property="jobName" jdbcType="VARCHAR"/>
         <result column="bean_name" property="beanName" jdbcType="VARCHAR"/>
         <result column="method_name" property="methodName" jdbcType="VARCHAR"/>
