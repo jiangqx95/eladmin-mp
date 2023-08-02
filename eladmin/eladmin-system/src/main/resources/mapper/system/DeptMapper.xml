@@ -15,8 +15,7 @@
     </resultMap>
 
     <sql id="BaseResultMap">
-        dept_id
-        , name, pid, sub_count, create_time, update_time, create_by, update_by, enabled, dept_sort
+        dept_id, name, pid, sub_count, create_time, update_time, create_by, update_by, enabled, dept_sort
     </sql>
 
     <select id="findAll" resultMap="BaseResultMap">

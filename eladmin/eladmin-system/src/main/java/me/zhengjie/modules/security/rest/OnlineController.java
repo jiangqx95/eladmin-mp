@@ -18,6 +18,8 @@ package me.zhengjie.modules.security.rest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import me.zhengjie.exception.BadRequestException;
+import me.zhengjie.modules.security.security.TokenProvider;
 import me.zhengjie.modules.security.service.OnlineUserService;
 import me.zhengjie.modules.security.service.dto.OnlineUserDto;
 import me.zhengjie.utils.EncryptUtils;
@@ -28,6 +30,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
@@ -42,6 +45,7 @@ import java.util.Set;
 public class OnlineController {
 
     private final OnlineUserService onlineUserService;
+    private final TokenProvider tokenProvider;
 
     @ApiOperation("查询在线用户")
     @GetMapping
@@ -60,10 +64,14 @@ public class OnlineController {
     @ApiOperation("踢出用户")
     @DeleteMapping
     @PreAuthorize("@el.check()")
-    public ResponseEntity<Object> deleteOnlineUser(@RequestBody Set<String> keys) throws Exception {
+    public ResponseEntity<Object> deleteOnlineUser(HttpServletRequest request, @RequestBody Set<String> keys) throws Exception {
+        String currentToken = tokenProvider.getToken(request);
         for (String token : keys) {
             // 解密Key
             token = EncryptUtils.desDecrypt(token);
+            if (currentToken.equals(token)) {
+                throw new BadRequestException("不能操作自己");
+            }
             onlineUserService.logout(token);
         }
         return new ResponseEntity<>(HttpStatus.OK);
