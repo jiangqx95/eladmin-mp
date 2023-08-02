@@ -16,8 +16,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        log_id
-        , job_name, bean_name, method_name, params, cron_expression, is_success, exception_detail, time, create_time
+        log_id, job_name, bean_name, method_name, params, cron_expression, is_success, exception_detail, time, create_time
     </sql>
 
     <select id="findAll" resultMap="BaseResultMap">
