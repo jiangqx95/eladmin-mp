@@ -245,7 +245,7 @@ INSERT INTO `sys_dict` VALUES ('5', 'job_status', '岗位状态', 'admin', 'admi
 DROP TABLE IF EXISTS `sys_dict_detail`;
 CREATE TABLE `sys_dict_detail`  (
   `detail_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'ID',
-  `dict_id` bigint NULL DEFAULT NULL COMMENT '字典id',
+  `dict_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '字典id',
   `label` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '字典标签',
   `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '字典值',
   `dict_sort` int NULL DEFAULT NULL COMMENT '排序',
