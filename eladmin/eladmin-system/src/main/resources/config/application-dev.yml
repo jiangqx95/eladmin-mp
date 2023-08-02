@@ -9,8 +9,8 @@ spring:
     druid:
       db-type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-      url: jdbc:log4jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:eladmin}?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
-      username: ${DB_USER:root}
+      url: jdbc:log4jdbc:oracle:thin:@${DB_HOST:localhost}:${DB_PORT:1521}:${DB_SID:orcl}
+      username: ${DB_USER:ELADMIN}
       password: ${DB_PWD:jiang123}
       # 初始连接数
       initial-size: 5
@@ -35,7 +35,7 @@ spring:
       # 是否在归还到池中前进行检验
       test-on-return: false
       # 检测连接是否有效
-      validation-query: select 1
+      validation-query: select 1 from dual
       # 配置监控统计
       webStatFilter:
         enabled: true

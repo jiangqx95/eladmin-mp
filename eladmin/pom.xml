@@ -36,6 +36,7 @@
         <swagger.version>2.9.2</swagger.version>
         <fastjson.version>1.2.83</fastjson.version>
         <druid.version>1.2.8</druid.version>
+        <oracle.version>11.2.0.3</oracle.version>
         <commons-pool2.version>2.11.1</commons-pool2.version>
     </properties>
 
@@ -105,10 +106,11 @@
             <version>3.0.3</version>
         </dependency>
 
-        <!--Mysql依赖包-->
+        <!--Oracle依赖包-->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>${oracle.version}</version>
             <scope>runtime</scope>
         </dependency>
 
