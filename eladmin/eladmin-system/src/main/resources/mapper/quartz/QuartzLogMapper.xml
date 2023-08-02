@@ -3,14 +3,14 @@
 <mapper namespace="me.zhengjie.modules.quartz.mapper.QuartzLogMapper">
 
     <resultMap id="BaseResultMap" type="me.zhengjie.modules.quartz.domain.QuartzLog">
-        <id column="log_id" property="id" jdbcType="BIGINT"/>
+        <id column="log_id" property="id" jdbcType="VARCHAR"/>
         <result column="job_name" property="jobName" jdbcType="VARCHAR"/>
         <result column="bean_name" property="beanName" jdbcType="VARCHAR"/>
         <result column="method_name" property="methodName" jdbcType="VARCHAR"/>
         <result column="params" property="params" jdbcType="VARCHAR"/>
         <result column="cron_expression" property="cronExpression" jdbcType="VARCHAR"/>
         <result column="is_success" property="isSuccess" jdbcType="VARCHAR"/>
-        <result column="exception_detail" property="exceptionDetail" jdbcType="BIGINT"/>
+        <result column="exception_detail" property="exceptionDetail" jdbcType="LONGVARCHAR"/>
         <result column="time" property="time" jdbcType="BIGINT"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
     </resultMap>
