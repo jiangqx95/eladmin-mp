@@ -100,7 +100,6 @@
             v-model="scope.row.enabled"
             :disabled="scope.row.id === 1"
             active-color="#409EFF"
-            inactive-color="#F56C6C"
             @change="changeEnabled(scope.row, scope.row.enabled,)"
           />
         </template>
