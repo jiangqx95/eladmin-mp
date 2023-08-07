@@ -21,8 +21,6 @@ import me.zhengjie.utils.SecurityUtils;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
-
 /**
  * @author Zheng Jie
  * @description
@@ -34,29 +32,27 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         /* 创建时间 */
-        this.strictInsertFill(metaObject, "createTime", Timestamp.class, DateTime.now().toTimestamp());
-        this.strictInsertFill(metaObject, "updateTime", Timestamp.class, DateTime.now().toTimestamp());
+        this.setFieldValByName("createTime", DateTime.now().toTimestamp(), metaObject);
+        this.setFieldValByName("updateTime", DateTime.now().toTimestamp(), metaObject);
         /* 操作人 */
-        String username = "System";
+        String username;
         try {
             username = SecurityUtils.getCurrentUsername();
         } catch (Exception ignored) {
+            // 写日志是异步操作,已经带上了用户名,这里获取不到用户信息,直接用
+            username = metaObject.getValue("username").toString();
         }
-        this.strictInsertFill(metaObject, "createBy", String.class, username);
-        this.strictInsertFill(metaObject, "updateBy", String.class, username);
+        this.setFieldValByName("createBy", username, metaObject);
+        this.setFieldValByName("updateBy", username, metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         /* 更新时间 */
-        this.strictUpdateFill(metaObject, "updateTime", Timestamp.class, DateTime.now().toTimestamp());
+        this.setFieldValByName("updateTime", DateTime.now().toTimestamp(), metaObject);
         /* 操作人 */
-        String username = "System";
-        try {
-            username = SecurityUtils.getCurrentUsername();
-        } catch (Exception ignored) {
-        }
-        this.strictUpdateFill(metaObject, "updateBy", String.class, username);
+        String username = SecurityUtils.getCurrentUsername();
+        this.setFieldValByName("updateBy", username, metaObject);
     }
 }
 
