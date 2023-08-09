@@ -42,6 +42,21 @@
         <el-form-item label="部门名称" prop="name">
           <el-input v-model="form.name" style="width: 370px;" />
         </el-form-item>
+        <el-form-item label="部门类型" prop="deptType">
+          <el-select
+            v-model="form.deptType"
+            clearable
+            size="small"
+            placeholder="请选择"
+            class="filter-item"
+            style="width: 370px;"
+          >
+            <el-option v-for="item in dict.DEPT_TYPE" :key="item.id" :label="item.label" :value="item.value" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="部门代码" prop="code">
+          <el-input v-model="form.code" maxlength="9" style="width: 370px;" />
+        </el-form-item>
         <el-form-item label="部门排序" prop="deptSort">
           <el-input-number
             v-model.number="form.deptSort"
@@ -100,7 +115,6 @@
             v-model="scope.row.enabled"
             :disabled="scope.row.id === 1"
             active-color="#409EFF"
-            inactive-color="#F56C6C"
             @change="changeEnabled(scope.row, scope.row.enabled,)"
           />
         </template>
@@ -136,7 +150,7 @@ import crudOperation from '@crud/CRUD.operation'
 import udOperation from '@crud/UD.operation'
 import DateRangePicker from '@/components/DateRangePicker'
 
-const defaultForm = { id: null, name: null, isTop: '1', subCount: 0, pid: null, deptSort: 999, enabled: 'true' }
+const defaultForm = { id: null, name: null, code: null, deptType: null, isTop: '1', subCount: 0, pid: null, deptSort: 999, enabled: 'true' }
 export default {
   name: 'Dept',
   components: { Treeselect, crudOperation, rrOperation, udOperation, DateRangePicker },
@@ -145,13 +159,16 @@ export default {
   },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   // 设置数据字典
-  dicts: ['dept_status'],
+  dicts: ['dept_status', 'DEPT_TYPE'],
   data() {
     return {
       depts: [],
       rules: {
         name: [
           { required: true, message: '请输入名称', trigger: 'blur' }
+        ],
+        deptType: [
+          { required: true, message: '请选择类型', trigger: 'blur' }
         ],
         deptSort: [
           { required: true, message: '请输入序号', trigger: 'blur', type: 'number' }
