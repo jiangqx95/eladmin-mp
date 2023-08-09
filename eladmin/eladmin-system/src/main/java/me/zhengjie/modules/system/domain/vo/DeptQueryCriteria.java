@@ -26,16 +26,12 @@ import java.util.List;
  */
 @Data
 public class DeptQueryCriteria {
-
     private List<String> ids;
-
     private String name;
-
+    private String code;
+    private String deptType;
     private Boolean enabled;
-
     private String pid;
-
     private Boolean pidIsNull;
-
     private List<Timestamp> createTime;
 }
