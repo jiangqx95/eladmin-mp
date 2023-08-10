@@ -5,6 +5,7 @@
         <id column="dept_id" property="id"/>
         <result column="dept_sort" property="deptSort"/>
         <result column="name" property="name"/>
+        <result column="full_name" property="fullName"/>
         <result column="code" property="code"/>
         <result column="dept_type" property="deptType"/>
         <result column="enabled" property="enabled"/>
@@ -17,7 +18,7 @@
     </resultMap>
 
     <sql id="BaseResultMap">
-        dept_id, name, code, dept_type, pid, sub_count, create_time, update_time, create_by, update_by, enabled, dept_sort
+        dept_id, name, full_name, code, dept_type, pid, sub_count, create_time, update_time, create_by, update_by, enabled, dept_sort
     </sql>
 
     <select id="findAll" resultMap="BaseResultMap">
@@ -73,6 +74,7 @@
     <select id="findByRoleId" resultType="me.zhengjie.modules.system.domain.Dept">
         select d.dept_id as id,
                d.name,
+               d.full_name,
                d.code,
                d.dept_type,
                d.pid,
