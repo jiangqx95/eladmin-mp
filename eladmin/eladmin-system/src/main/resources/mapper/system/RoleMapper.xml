@@ -19,6 +19,7 @@
         <collection property="depts" ofType="me.zhengjie.modules.system.domain.Dept">
             <id column="dept_id" property="id"/>
             <result column="dept_name" property="name"/>
+            <result column="dept_full_name" property="fullName"/>
             <result column="code" property="code"/>
             <result column="dept_type" property="deptType"/>
         </collection>
@@ -35,7 +36,7 @@
     </sql>
 
     <sql id="Dept_Column_List">
-        dept.dept_id as dept_id, dept.name as dept_name, dept.code, dept.dept_type
+        dept.dept_id as dept_id, dept.name as dept_name, dept.full_name as dept_full_name, dept.code, dept.dept_type
     </sql>
 
     <sql id="Where_sql">

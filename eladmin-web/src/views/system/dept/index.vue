@@ -42,6 +42,9 @@
         <el-form-item label="部门名称" prop="name">
           <el-input v-model="form.name" style="width: 370px;" />
         </el-form-item>
+        <el-form-item label="部门全称" prop="fullName">
+          <el-input v-model="form.fullName" style="width: 370px;" />
+        </el-form-item>
         <el-form-item label="部门类型" prop="deptType">
           <el-select
             v-model="form.deptType"
@@ -150,7 +153,7 @@ import crudOperation from '@crud/CRUD.operation'
 import udOperation from '@crud/UD.operation'
 import DateRangePicker from '@/components/DateRangePicker'
 
-const defaultForm = { id: null, name: null, code: null, deptType: null, isTop: '1', subCount: 0, pid: null, deptSort: 999, enabled: 'true' }
+const defaultForm = { id: null, name: null, fullNme: null, code: null, deptType: null, isTop: '1', subCount: 0, pid: null, deptSort: 999, enabled: 'true' }
 export default {
   name: 'Dept',
   components: { Treeselect, crudOperation, rrOperation, udOperation, DateRangePicker },
@@ -166,6 +169,9 @@ export default {
       rules: {
         name: [
           { required: true, message: '请输入名称', trigger: 'blur' }
+        ],
+        fullName: [
+          { required: true, message: '请输入全称', trigger: 'blur' }
         ],
         deptType: [
           { required: true, message: '请选择类型', trigger: 'blur' }
