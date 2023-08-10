@@ -195,6 +195,7 @@ CREATE TABLE `sys_dept`  (
   `pid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '上级部门',
   `sub_count` int NOT NULL DEFAULT 0 COMMENT '子部门数目',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '名称',
+  `full_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '名称全称',
   `code` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '部门代码',
   `dept_type` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '部门类型',
   `dept_sort` int NULL DEFAULT 999 COMMENT '排序',
@@ -211,13 +212,13 @@ CREATE TABLE `sys_dept`  (
 -- ----------------------------
 -- Records of sys_dept
 -- ----------------------------
-INSERT INTO `sys_dept` VALUES ('15', '8', 0, 'UI部门', NULL, NULL, 7, b'1', 'admin', 'admin', '2020-05-13 22:56:53', '2020-05-14 12:54:13');
-INSERT INTO `sys_dept` VALUES ('17', '2', 0, '研发一组', NULL, NULL, 999, b'1', 'admin', 'admin', '2020-08-02 14:49:07', '2020-08-02 14:49:07');
-INSERT INTO `sys_dept` VALUES ('2', '7', 1, '研发部', NULL, NULL, 3, b'1', 'admin', 'admin', '2019-03-25 09:15:32', '2020-08-02 14:48:47');
-INSERT INTO `sys_dept` VALUES ('5', '7', 0, '运维部', NULL, NULL, 4, b'1', 'admin', 'admin', '2019-03-25 09:20:44', '2020-05-17 14:27:27');
-INSERT INTO `sys_dept` VALUES ('6', '8', 0, '测试部', NULL, NULL, 6, b'1', 'admin', 'admin', '2019-03-25 09:52:18', '2020-06-08 11:59:21');
-INSERT INTO `sys_dept` VALUES ('7', NULL, 2, '华南分部', NULL, NULL, 0, b'1', 'admin', 'admin', '2019-03-25 11:04:50', '2020-06-08 12:08:56');
-INSERT INTO `sys_dept` VALUES ('8', NULL, 2, '华北分部', NULL, NULL, 1, b'1', 'admin', 'admin', '2019-03-25 11:04:53', '2020-05-14 12:54:00');
+INSERT INTO `sys_dept` VALUES ('15', '8', 0, 'UI部门', 'UI部门', NULL, NULL, 7, b'1', 'admin', 'admin', '2020-05-13 22:56:53', '2020-05-14 12:54:13');
+INSERT INTO `sys_dept` VALUES ('17', '2', 0, '研发一组', '研发一组', NULL, NULL, 999, b'1', 'admin', 'admin', '2020-08-02 14:49:07', '2020-08-02 14:49:07');
+INSERT INTO `sys_dept` VALUES ('2', '7', 1, '研发部', '研发部', NULL, NULL, 3, b'1', 'admin', 'admin', '2019-03-25 09:15:32', '2020-08-02 14:48:47');
+INSERT INTO `sys_dept` VALUES ('5', '7', 0, '运维部', '运维部', NULL, NULL, 4, b'1', 'admin', 'admin', '2019-03-25 09:20:44', '2020-05-17 14:27:27');
+INSERT INTO `sys_dept` VALUES ('6', '8', 0, '测试部', '测试部', NULL, NULL, 6, b'1', 'admin', 'admin', '2019-03-25 09:52:18', '2020-06-08 11:59:21');
+INSERT INTO `sys_dept` VALUES ('7', NULL, 2, '华南分部', '华南分部', NULL, NULL, 0, b'1', 'admin', 'admin', '2019-03-25 11:04:50', '2020-06-08 12:08:56');
+INSERT INTO `sys_dept` VALUES ('8', NULL, 2, '华北分部', '华北分部', NULL, NULL, 1, b'1', 'admin', 'admin', '2019-03-25 11:04:53', '2020-05-14 12:54:00');
 
 -- ----------------------------
 -- Table structure for sys_dict

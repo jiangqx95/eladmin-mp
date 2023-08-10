@@ -62,6 +62,10 @@ public class Dept extends BaseEntity implements Serializable {
     private String name;
 
     @NotBlank
+    @ApiModelProperty(value = "部门名称全称")
+    private String fullName;
+
+    @NotBlank
     @ApiModelProperty(value = "部门代码")
     private String code;
 
