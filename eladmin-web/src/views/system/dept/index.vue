@@ -111,7 +111,8 @@
     >
       <el-table-column :selectable="checkboxT" type="selection" width="40" />
       <el-table-column label="名称" prop="name" />
-      <el-table-column label="排序" prop="deptSort" />
+      <el-table-column label="代码" prop="code" align="center" />
+      <el-table-column label="排序" prop="deptSort" align="center" />
       <el-table-column label="状态" align="center" prop="enabled">
         <template slot-scope="scope">
           <el-switch
@@ -153,7 +154,7 @@ import crudOperation from '@crud/CRUD.operation'
 import udOperation from '@crud/UD.operation'
 import DateRangePicker from '@/components/DateRangePicker'
 
-const defaultForm = { id: null, name: null, fullNme: null, code: null, deptType: null, isTop: '1', subCount: 0, pid: null, deptSort: 999, enabled: 'true' }
+const defaultForm = { id: null, name: null, fullName: null, code: null, deptType: null, isTop: '1', subCount: 0, pid: null, deptSort: 999, enabled: 'true' }
 export default {
   name: 'Dept',
   components: { Treeselect, crudOperation, rrOperation, udOperation, DateRangePicker },
