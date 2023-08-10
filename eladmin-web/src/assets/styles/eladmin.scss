@@ -115,3 +115,7 @@
 .el-tabs{
   margin-bottom: 25px;
 }
+
+.vue-treeselect--has-value .vue-treeselect__input {
+  vertical-align: middle!important;
+}
