@@ -55,15 +55,23 @@ public class DataServiceImpl implements DataService {
         Set<String> deptIds = new HashSet<>();
         // 查询用户角色
         List<Role> roleList = roleService.findByUsersId(user.getId());
+        // 部门ID
+        String dept_id = user.getDept().getId();
         // 获取对应的部门ID
         for (Role role : roleList) {
             DataScopeEnum dataScopeEnum = DataScopeEnum.find(role.getDataScope());
             switch (Objects.requireNonNull(dataScopeEnum)) {
                 case THIS_LEVEL:
-                    deptIds.add(user.getDept().getId());
+                    deptIds.add(dept_id);
+                    break;
+                case THIS_FIRST_CHILD:
+                    getFirstChild(deptIds, dept_id);
+                    break;
+                case THIS_ALL_CHILD:
+                    getAllChild(deptIds, dept_id);
                     break;
                 case CUSTOMIZE:
-                    deptIds.addAll(getCustomize(deptIds, role));
+                    getCustomize(deptIds, role);
                     break;
                 default:
                     return new ArrayList<>();
@@ -73,13 +81,45 @@ public class DataServiceImpl implements DataService {
     }
 
     /**
+     * 获取本级和直属下级权限
+     *
+     * @param deptIds
+     * @param dept_id
+     */
+    public void getFirstChild(Set<String> deptIds, String dept_id) {
+        // 本级
+        deptIds.add(dept_id);
+        // 直属下级
+        List<Dept> child = deptService.findByPid(dept_id);
+        for (Dept dept : child) {
+            deptIds.add(dept.getId());
+        }
+    }
+
+    /**
+     * 获取本级和所有下级数据权限
+     *
+     * @param deptIds
+     * @param dept_id
+     */
+    public void getAllChild(Set<String> deptIds, String dept_id) {
+        // 本级
+        deptIds.add(dept_id);
+        // 所有下级
+        List<Dept> deptChildren = deptService.findByPid(dept_id);
+        if (deptChildren != null && deptChildren.size() != 0) {
+            deptIds.addAll(deptService.getDeptChildren(deptChildren));
+        }
+    }
+
+    /**
      * 获取自定义的数据权限
      *
      * @param deptIds 部门ID
      * @param role    角色
      * @return 数据权限ID
      */
-    public Set<String> getCustomize(Set<String> deptIds, Role role) {
+    public void getCustomize(Set<String> deptIds, Role role) {
         Set<Dept> depts = deptService.findByRoleId(role.getId());
         for (Dept dept : depts) {
             deptIds.add(dept.getId());
@@ -88,6 +128,5 @@ public class DataServiceImpl implements DataService {
                 deptIds.addAll(deptService.getDeptChildren(deptChildren));
             }
         }
-        return deptIds;
     }
 }
