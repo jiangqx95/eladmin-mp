@@ -110,7 +110,7 @@
       @selection-change="crud.selectionChangeHandler"
     >
       <el-table-column :selectable="checkboxT" type="selection" width="40" />
-      <el-table-column label="名称" prop="name" />
+      <el-table-column label="名称" prop="name" width="250" />
       <el-table-column label="代码" prop="code" align="center" />
       <el-table-column label="排序" prop="deptSort" align="center" />
       <el-table-column label="状态" align="center" prop="enabled">
