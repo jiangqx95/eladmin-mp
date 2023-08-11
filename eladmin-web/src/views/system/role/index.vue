@@ -171,7 +171,7 @@ export default {
   data() {
     return {
       defaultProps: { children: 'children', label: 'label', isLeaf: 'leaf' },
-      dateScopes: ['全部', '本级', '自定义'], level: 3,
+      dateScopes: ['全部', '本级', '本级及直属下级', '本级及所有下级', '自定义'], level: 3,
       currentId: 0, menuLoading: false, showButton: false,
       menus: [], menuIds: [], depts: [], deptDatas: [], // 多选时使用
       permission: {
